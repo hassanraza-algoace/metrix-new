@@ -1,8 +1,10 @@
 import { CiUser } from "react-icons/ci";
-import { GrHide } from "react-icons/gr";
+import { IoIosEyeOff } from "react-icons/io";
 import { PiEnvelopeSimpleLight, PiLockLight } from "react-icons/pi";
 import Button from "../components/UI/Button";
 import { NavLink } from "react-router-dom";
+import SimpleInput from "../components/UI/SimpleInput";
+import PasswordInput from "../components/UI/PasswordInput";
 
 const Signup = () => {
   return (
@@ -21,39 +23,28 @@ const Signup = () => {
         </div>
         <div className="w-full mt-6">
           <form className="w-full flex flex-col gap-5">
-            <div className="flex items-center gap-2.5 bg-[#EFF1F999] p-3.5 w-full rounded-lg">
-              <CiUser className="text-[#6E7079] text-[20px]" />
-              <input
-                type="name"
-                name="username"
-                id="username"
-                placeholder="Your Full Name"
-                className="text-[16px] border-0 outline-0 font-[Inter]"
-              />
-            </div>
-            <div className="flex items-center gap-2.5 bg-[#EFF1F999] p-3.5 w-full rounded-lg">
-              <PiEnvelopeSimpleLight className="text-[#6E7079] text-[20px]" />
-              <input
-                type="email"
-                name="email"
-                id="email"
-                placeholder="Your Email Address"
-                className="text-[16px] border-0 outline-0 font-[Inter]"
-              />
-            </div>
-            <div className="flex items-center justify-between gap-2.5 bg-[#EFF1F999] p-3.5 w-full rounded-lg">
-              <div className="flex items-center gap-2.5">
-                <PiLockLight className="text-[#6E7079] text-[20px]" />
-                <input
-                  type="password"
-                  name="password"
-                  id="password"
-                  placeholder="Create a Strong Password"
-                  className="text-[16px] border-0 outline-0 font-[Inter]"
-                />
-              </div>
-              <GrHide className="text-[#6E7079] text-[20px] " />
-            </div>
+            <SimpleInput
+              type={"name"}
+              name={"username"}
+              id={"username"}
+              placeholder={"Your Full Name"}
+              Icon={CiUser}
+            />
+            <SimpleInput
+              type={"email"}
+              name={"email"}
+              id={"email"}
+              placeholder={"Email Address"}
+              Icon={PiEnvelopeSimpleLight}
+            />
+            <PasswordInput
+              Icon={PiLockLight}
+              type={"password"}
+              name={"password"}
+              id={"password"}
+              placeholder={"Create a Strong Password"}
+              Hide={IoIosEyeOff}
+            />
             <div className="flex justify-center">
               <p>
                 Already have an account?
