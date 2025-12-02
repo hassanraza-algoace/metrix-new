@@ -4,10 +4,14 @@ import { NavLink } from "react-router-dom";
 import SimpleInput from "../components/UI/SimpleInput";
 import PasswordInput from "../components/UI/PasswordInput";
 import { IoIosEyeOff } from "react-icons/io";
+// import { useEffect } from "react";
 
 const Login = () => {
+  // useEffect(() => {
+  //   document.title = "Login | Metrix";
+  // }, []);
   return (
-    <section className="bg-[#F4F5FA] flex justify-center items-center h-screen">
+    <section className="bg-[#F4F5FA] flex justify-center items-center min-h-screen py-6">
       <div className="sm:max-w-[443px] w-full bg-white flex flex-col items-center justify-center px-[34px] py-11 rounded-xl">
         <div>
           <img src="images/Graph.svg" alt="Graph-image" />
@@ -21,7 +25,9 @@ const Login = () => {
           </p>
         </div>
         <div className="w-full mt-6">
-          <form className="w-full flex flex-col gap-5">
+          <form
+            className="w-full flex flex-col gap-5"
+          >
             <SimpleInput
               type={"email"}
               name={"email"}
@@ -49,12 +55,15 @@ const Login = () => {
               <p>
                 Don’t have an account?
                 <span className="text-[#5570F1] font-[Inter] text-[14px] font-normal pl-1.5">
-                  <NavLink to="/">Sign Up</NavLink>
+                  <NavLink to="/signup">Sign Up</NavLink>
                 </span>
               </p>
             </div>
             <div className="flex justify-center mt-5">
-              <Button content={"Login"} />
+              <Button
+                content={"Login"}
+                type={"submit"}
+              />
             </div>
           </form>
         </div>

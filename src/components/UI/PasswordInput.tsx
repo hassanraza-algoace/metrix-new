@@ -21,15 +21,15 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
 
     const [show , setShow] = useState(false)
   return (
-    <div className="flex items-center justify-between gap-2.5 bg-[#EFF1F999] p-3.5 w-full rounded-lg">
-      <div className="flex items-center gap-2.5">
+    <div className="flex items-center justify-between bg-[#EFF1F999] p-3.5 w-full rounded-lg">
+      <div className="flex items-center gap-2.5 w-full">
         {Icon && <Icon className="text-[#6E7079] text-[20px]" />}
         <input
           type={show ? "text" : type}
           name={name}
           id={id}
           placeholder={placeholder}
-          className="text-[16px] border-0 outline-0 font-[Inter]"
+          className="text-[16px] border-0 outline-0 font-[Inter] w-full"
         />
       </div>
       <div onClick={() => setShow(!show)} className="cursor-pointer">

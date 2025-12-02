@@ -5,10 +5,14 @@ import Button from "../components/UI/Button";
 import { NavLink } from "react-router-dom";
 import SimpleInput from "../components/UI/SimpleInput";
 import PasswordInput from "../components/UI/PasswordInput";
+// import { useEffect } from "react";
 
 const Signup = () => {
+  // useEffect(() => {
+  //     document.title = "Signup | Metrix";
+  //   }, []);
   return (
-    <section className="bg-[#F4F5FA] flex justify-center items-center h-screen">
+    <section className="bg-[#F4F5FA] flex justify-center items-center min-h-screen py-6">
       <div className="sm:max-w-[443px] w-full bg-white flex flex-col items-center justify-center px-[34px] py-11 rounded-xl">
         <div>
           <img src="images/Graph.svg" alt="Graph-image" />
@@ -22,7 +26,9 @@ const Signup = () => {
           </p>
         </div>
         <div className="w-full mt-6">
-          <form className="w-full flex flex-col gap-5">
+          <form
+            className="w-full flex flex-col gap-5"
+          >
             <SimpleInput
               type={"name"}
               name={"username"}
@@ -49,12 +55,15 @@ const Signup = () => {
               <p>
                 Already have an account?
                 <span className="text-[#5570F1] font-[Inter] text-[14px] font-normal pl-1">
-                  <NavLink to="/login">Login</NavLink>
+                  <NavLink to="/">Login</NavLink>
                 </span>
               </p>
             </div>
             <div className="flex justify-center mt-5">
-              <Button content={"Signup"} />
+              <Button
+                content={"Signup"}
+                type={"submit"}
+              />
             </div>
           </form>
         </div>
