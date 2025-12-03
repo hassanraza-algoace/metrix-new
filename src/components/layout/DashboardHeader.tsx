@@ -1,7 +1,8 @@
 import { useState, useEffect } from "react";
 import { IoIosArrowDown, IoMdHome } from "react-icons/io";
 import { PiBellSimpleFill } from "react-icons/pi";
-import { useLocation } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import { RouteDashboard } from "../../pages/Routes";
 
 const DashboardHeader = () => {
   const { pathname } = useLocation();
@@ -16,31 +17,39 @@ const DashboardHeader = () => {
   };
 
   const [pageTitle, setPageTitle] = useState(getPageName());
+  const [showProfile, setShowProfile] = useState(false);
 
   // Update on pathname change (and also browser tab)
   useEffect(() => {
     const title = getPageName();
     setPageTitle(title);
   }, [pathname]);
-
+  const handleProfile = () => {
+    setShowProfile(!showProfile);
+  };
   return (
-    <header className="">
+    <header className="sticky top-0 bg-white">
       <div className="p-4 flex justify-between items-start">
         <div>
           <h1 className="text-[20px] font-[Poppins] font-medium">
             {pageTitle}
           </h1>
-          
         </div>
         <div className="flex gap-3 items-center">
-          <div className="bg-[#FEF5EA] flex items-center gap-3 cursor-pointer p-1.5 rounded-b-sm">
-            <p className="text-[14px] font-[Inter]">Nanny’s Shop</p>
-            <IoIosArrowDown />
+          <div
+            className={`${
+              showProfile === true ? "flex! absolute right-2 top-14" : "hidden"
+            } bg-[#FEF5EA] lg:static lg:flex items-center gap-3 cursor-pointer p-1.5 rounded-b-sm`}
+          >
+            <p className="lg:text-[14px] text-[12px]  font-[Inter]">
+              Nanny’s Shop
+            </p>
+            <IoIosArrowDown className="hidden lg:block" />
           </div>
           <div>
             <PiBellSimpleFill className="text-[#5570F1] text-[18px] cursor-pointer" />
           </div>
-          <div>
+          <div onClick={handleProfile}>
             <img
               src="/images/profile.jpg"
               alt="profile-picture"
@@ -50,10 +59,16 @@ const DashboardHeader = () => {
             />
           </div>
         </div>
-          </div>
-          <div className="px-4 py-1 border-t border-[#F1F3F9]">
-              <IoMdHome className="text-[#5570F1] text-[18px] cursor-pointer" />
-          </div>
+      </div>
+      <div className="px-4 py-1 border-t border-[#F1F3F9] flex items-center gap-2">
+        <NavLink to={RouteDashboard}>
+          <IoMdHome className="text-[#5570F1] text-[18px] cursor-pointer" />
+        </NavLink>
+        {
+          pageTitle !== "Dashboard"  ? <p className="text-[12px]">/ {pageTitle}</p> : null
+        }
+        
+      </div>
     </header>
   );
 };

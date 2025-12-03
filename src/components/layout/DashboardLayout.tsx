@@ -12,7 +12,9 @@ const DashboardLayout = () => {
 
         <div className="flex-1">
           <DashboardHeader />
-          <Outlet />
+          <div className="bg-[#EEF0FA] p-5 min-h-screen">
+            <Outlet />
+          </div>
         </div>
       </div>
     </>

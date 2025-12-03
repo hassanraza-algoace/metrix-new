@@ -6,6 +6,12 @@ import AppLayout from "./components/layout/AuthLayout";
 import DashboardLayout from "./components/layout/DashboardLayout";
 import DashboardHome from "./pages/DashboardHome";
 import NotFound from "./pages/NotFound";
+import { RouteDashboard, RouteDashboardConversations, RouteDashboardCustomers, RouteDashboardInventory, RouteDashboardOrders, RouteDashboardSettings } from "./pages/Routes";
+import DashboardOrders from "./pages/DashboardOrders";
+import DashboardInventory from "./pages/DashboardInventory";
+import DashboardConversations from "./pages/DashboardConversations";
+import DashboardSettings from "./pages/DashboardSettings";
+import DashboardCustomers from "./pages/DashboardCustomers";
 
 function App() {
   const router = createBrowserRouter([
@@ -24,12 +30,32 @@ function App() {
       ],
     },
     {
-      path: "/dashboard",
+      path: RouteDashboard,
       element: <DashboardLayout />,
       children: [
         {
-          path: "",
+          path: RouteDashboard,
           element: <DashboardHome />,
+        },
+        {
+          path: RouteDashboardOrders,
+          element: <DashboardOrders />,
+        },
+        {
+          path: RouteDashboardCustomers,
+          element: <DashboardCustomers />,
+        },
+        {
+          path: RouteDashboardInventory,
+          element: <DashboardInventory />,
+        },
+        {
+          path: RouteDashboardConversations,
+          element: <DashboardConversations />,
+        },
+        {
+          path: RouteDashboardSettings,
+          element: <DashboardSettings />,
         },
       ],
     },

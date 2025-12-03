@@ -2,12 +2,17 @@ import React from "react";
 
 interface ButtonProps {
   content: string;
-  icon?: React.ReactNode;    // optional icon
+  icon?: React.ReactNode; // optional icon
   className?: string; // optional custom styling
-  numbers?: number; 
+  numbers?: number | null;
 }
 
-const SimpleButton: React.FC<ButtonProps> = ({ content, icon, className, numbers }) => {
+const SimpleButton: React.FC<ButtonProps> = ({
+  content,
+  icon,
+  className,
+  numbers,
+}) => {
   // Conditional class: agar className pass hai to wahi use, nahi to default styling
   const buttonClasses = className
     ? className
@@ -17,7 +22,11 @@ const SimpleButton: React.FC<ButtonProps> = ({ content, icon, className, numbers
     <button className={buttonClasses}>
       {icon && <span>{icon}</span>} {/* Only render icon if exists */}
       {content}
-      {numbers && <span className="bg-[#FFCC91] px-3.5 py-2 rounded-full text-[#1C1D22] text-[12px]">{numbers}</span>}
+      {numbers && numbers > 0 && (
+        <span className="bg-[#FFCC91] absolute top-0 right-0 lg:relative w-[15px] h-[15px] lg:w-5 lg:h-5 flex justify-center items-center rounded-full text-[#1C1D22] text-[8px] lg:text-[10px]" style={{lineHeight: "1em"}}>
+          {numbers}
+        </span>
+      )}
     </button>
   );
 };
