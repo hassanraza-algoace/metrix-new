@@ -91,7 +91,7 @@ const SideBar = () => {
 
 
   return (
-    <aside className=" max-w-[70px] lg:max-w-[296px] max-h-screen overflow-y-auto lg:px-4 pb-4 flex flex-col  items-center lg:items-start sticky top-0">
+    <aside className=" max-w-[70px] lg:max-w-[296px] h-screen overflow-y-auto lg:px-4 pb-4 flex flex-col  items-center lg:items-start sticky top-0">
       <div className="sticky top-0 bg-white w-full pt-4 z-10 flex justify-center lg:justify-start ">
         <img src="/images/Logo.png" alt="LOGO" className="hidden lg:block" />
         <img src="/images/Graph.svg" alt="LOGO" className="block lg:hidden w-[50%]"/>

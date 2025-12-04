@@ -5,3 +5,7 @@
 /* :root {
   --primary-color:#5570F1;
 } */
+
+.red-text:nth-child(1){
+ color: #CC5F5F;
+}

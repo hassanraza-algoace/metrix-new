@@ -1,28 +1,95 @@
-import { TbCategoryFilled } from "react-icons/tb";
 import Cards from "../components/UI/Cards";
+import { HiOutlineChartPie } from "react-icons/hi";
+import { LuFolderMinus, LuUsers } from "react-icons/lu";
+import { BsHandbag } from "react-icons/bs";
+import CardTwo from "../components/UI/CardTwo";
+import { FiShoppingCart } from "react-icons/fi";
 
 const DashboardHome = () => {
-  const cardData = [
-    { id: 1, title: "Total Orders", description: "Today", value: 120 },
-    { id: 2, title: "Completed", value: 95 },
+  const cardData1 = [
+    { id: 1, title: "Sales", description: "₦0.00", value: "+0.00%" },
+    { id: 2, title: "Volume", value: 0 },
+  ];
+  const cardData2 = [
+    { id: 1, title: "Customers", description: 0, value: "+0.00%" },
+    { id: 2, title: "Active", description: 0, value: "+0.00%" },
+  ];
+  const cardData3 = [
+    { id: 1, title: "All Orders", value: 0 },
+    { id: 2, title: "Pending", value: 0 },
+    { id: 3, title: "Completed", description: 0, value: "+0.00%" },
+  ];
+  const cardData4 = [
+    { id: 1, title: "All Products", description: 0, value: "+0.00%" },
+    { id: 2, title: "Active", description: 0, value: "+0.00%"},
+  ];
+  const cardData5 = [
+    { id: 1, title: "Abandoned Cart", description: "0%", value: "+0.00%" },
+    { id: 2, title: "Customers", value: 0},
   ];
   return (
-    <div className="flex flex-col max-w-full">
-      <div className="flex justify-between">
+    <div className="flex flex-col max-w-full gap-5">
+      <div className="flex justify-between flex-wrap gap-3">
         <Cards
-          icons={TbCategoryFilled}
-          filterContent="orders"
-          className="p-4 rounded-lg"
-          content={cardData}
+          icons={HiOutlineChartPie}
+          iconClassName="bg-[#5570F11F] text-[#5570F1] rounded-[8px] p-2"
+          filterContent="This Week"
+          className="p-4 rounded-lg w-full lg:max-w-[25%]"
+          divClassName="w-[70%] nth-2:w-[30%]"
+          content={cardData1}
         />
         <Cards
-          icons={TbCategoryFilled}
-          filterContent="orders"
-          className="p-4 rounded-lg"
-          content={cardData}
+          icons={LuUsers}
+          iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
+          filterContent="This Week"
+          className="p-4 rounded-lg w-full lg:max-w-[25%]"
+          divClassName="w-[70%] nth-2:w-[30%]"
+          content={cardData2}
+        />
+        <Cards
+          icons={BsHandbag}
+          iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
+          filterContent="This Week"
+          className="p-4 rounded-lg w-full lg:max-w-[40%]"
+          divClassName={"w-[35%] nth-3:w-[30%]"}
+          content={cardData3}
         />
       </div>
-      <div></div>
+      <div>
+        <div>
+          <div className="">
+            <div>
+              <CardTwo />
+            </div>
+            <div>
+              <div>
+                <Cards
+                  icons={LuFolderMinus}
+                  iconClassName="bg-[#FFCC9129] text-white rounded-[8px] p-2"
+                  downIconClassName="hidden"
+                  className="p-4 rounded-lg w-full bg-[#5570F1]!"
+                  divClassName={"w-[70%] nth-2:w-[30%]"}
+                  titleClassName="text-white"
+                  vlueClassName="text-white"
+                  content={cardData4}
+                />
+              </div>
+              <div>
+                <Cards
+                  icons={FiShoppingCart}
+                  iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
+                  filterContent="This Week"
+                  className="p-4 rounded-lg w-full red-text"
+                  divClassName={"w-[70%] nth-2:w-[30%]"}
+                  content={cardData5}
+                />
+              </div>
+            </div>
+          </div>
+          <div></div>
+        </div>
+        <div></div>
+      </div>
     </div>
   );
 };

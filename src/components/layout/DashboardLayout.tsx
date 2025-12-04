@@ -8,7 +8,9 @@ const DashboardLayout = () => {
     <>
       <AutoTitle />
       <div className="flex">
-        <SideBar />
+        <div>
+          <SideBar />
+        </div>
 
         <div className="flex-1">
           <DashboardHeader />
