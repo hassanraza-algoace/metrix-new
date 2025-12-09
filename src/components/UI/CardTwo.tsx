@@ -2,7 +2,7 @@ import { FaAngleDown } from "react-icons/fa";
 
 const CardTwo = () => {
   return (
-    <div className="bg-white p-4 rounded-lg flex flex-col gap-5 lg:w-[25%]">
+    <div className="bg-white p-4 rounded-lg flex flex-col gap-5 w-full">
       <div className="flex justify-between">
         <h3 className="text-[16px] font-medium text-[#45464E] font-[Inter]">
           Marketting

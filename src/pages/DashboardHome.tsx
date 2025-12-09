@@ -4,6 +4,8 @@ import { LuFolderMinus, LuUsers } from "react-icons/lu";
 import { BsHandbag } from "react-icons/bs";
 import CardTwo from "../components/UI/CardTwo";
 import { FiShoppingCart } from "react-icons/fi";
+import Cardthree from "../components/UI/Cardthree";
+import RecentOrder from "../components/UI/RecentOrder";
 
 const DashboardHome = () => {
   const cardData1 = [
@@ -29,12 +31,12 @@ const DashboardHome = () => {
   ];
   return (
     <div className="flex flex-col max-w-full gap-5">
-      <div className="flex justify-between flex-wrap gap-3">
+      <div className="flex justify-between flex-wrap gap-1.5">
         <Cards
           icons={HiOutlineChartPie}
           iconClassName="bg-[#5570F11F] text-[#5570F1] rounded-[8px] p-2"
           filterContent="This Week"
-          className="p-4 rounded-lg w-full lg:max-w-[25%]"
+          className="p-4 rounded-lg w-full lg:max-w-[30%]"
           divClassName="w-[70%] nth-2:w-[30%]"
           content={cardData1}
         />
@@ -42,7 +44,7 @@ const DashboardHome = () => {
           icons={LuUsers}
           iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
           filterContent="This Week"
-          className="p-4 rounded-lg w-full lg:max-w-[25%]"
+          className="p-4 rounded-lg w-full lg:max-w-[30%]"
           divClassName="w-[70%] nth-2:w-[30%]"
           content={cardData2}
         />
@@ -50,24 +52,24 @@ const DashboardHome = () => {
           icons={BsHandbag}
           iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
           filterContent="This Week"
-          className="p-4 rounded-lg w-full lg:max-w-[40%]"
+          className="p-4 rounded-lg w-full lg:max-w-[35%]"
           divClassName={"w-[35%] nth-3:w-[30%]"}
           content={cardData3}
         />
       </div>
-      <div>
-        <div>
-          <div className="">
-            <div>
+      <div className="flex justify-between flex-wrap lg:flex-nowrap gap-3">
+        <div className="flex flex-col gap-3 w-full lg:w-[62.5%]">
+          <div className="flex flex-wrap lg:flex-nowrap flex-1 gap-3">
+            <div className="w-full">
               <CardTwo />
             </div>
-            <div>
-              <div>
+            <div className="flex flex-col gap-3 w-full justify-between ">
+              <div className="w-full">
                 <Cards
                   icons={LuFolderMinus}
                   iconClassName="bg-[#FFCC9129] text-white rounded-[8px] p-2"
                   downIconClassName="hidden"
-                  className="p-4 rounded-lg w-full bg-[#5570F1]!"
+                  className="p-4 rounded-lg min-h-[152px] justify-center w-full bg-[#5570F1]!"
                   divClassName={"w-[70%] nth-2:w-[30%]"}
                   titleClassName="text-white"
                   vlueClassName="text-white"
@@ -79,16 +81,20 @@ const DashboardHome = () => {
                   icons={FiShoppingCart}
                   iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
                   filterContent="This Week"
-                  className="p-4 rounded-lg w-full red-text"
+                  className="p-4 rounded-lg min-h-[152px] justify-center w-full"
                   divClassName={"w-[70%] nth-2:w-[30%]"}
                   content={cardData5}
                 />
               </div>
             </div>
           </div>
-          <div></div>
+          <div>
+            <Cardthree />
+          </div>
         </div>
-        <div></div>
+        <div className="w-full lg:w-[35%]">
+          <RecentOrder />
+        </div>
       </div>
     </div>
   );
