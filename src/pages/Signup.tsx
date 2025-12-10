@@ -1,7 +1,7 @@
 import { CiUser } from "react-icons/ci";
 import { IoIosEyeOff } from "react-icons/io";
 import { PiEnvelopeSimpleLight, PiLockLight } from "react-icons/pi";
-import Button from "../components/UI/Button";
+import Button from "../components/UI/FunButton";
 import { NavLink } from "react-router-dom";
 import SimpleInput from "../components/UI/SimpleInput";
 import PasswordInput from "../components/UI/PasswordInput";
@@ -26,9 +26,7 @@ const Signup = () => {
           </p>
         </div>
         <div className="w-full mt-6">
-          <form
-            className="w-full flex flex-col gap-5"
-          >
+          <form className="w-full flex flex-col gap-5">
             <SimpleInput
               type={"name"}
               name={"username"}
@@ -60,10 +58,7 @@ const Signup = () => {
               </p>
             </div>
             <div className="flex justify-center mt-5">
-              <Button
-                content={"Signup"}
-                type={"submit"}
-              />
+              <Button content={"Signup"} type={"submit"} />
             </div>
           </form>
         </div>

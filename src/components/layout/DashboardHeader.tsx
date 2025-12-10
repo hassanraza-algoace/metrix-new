@@ -7,13 +7,17 @@ import { RouteDashboard } from "../../pages/Routes";
 const DashboardHeader = () => {
   const { pathname } = useLocation();
 
-  // Initial state derived from pathname
   const getPageName = () => {
-    if (pathname === "/") return "Login";
-    const lastPart = pathname.split("/").pop();
-    return lastPart
-      ? lastPart.charAt(0).toUpperCase() + lastPart.slice(1)
-      : "Page";
+    const parts = pathname.split("/").filter(Boolean); // remove empty parts
+    if (parts.length === 0) return "Login";
+    if (parts[0] === "dashboard") {
+      // Dynamic dashboard page title
+      if (parts[1] === "customers" && parts[2]) return "Customer Details";
+      return parts[1]
+        ? parts[1].charAt(0).toUpperCase() + parts[1].slice(1)
+        : "Dashboard";
+    }
+    return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
   };
 
   const [pageTitle, setPageTitle] = useState(getPageName());
@@ -21,14 +25,13 @@ const DashboardHeader = () => {
 
   // Update on pathname change (and also browser tab)
   useEffect(() => {
-    const title = getPageName();
-    setPageTitle(title);
+    setPageTitle(getPageName());
   }, [pathname]);
   const handleProfile = () => {
     setShowProfile(!showProfile);
   };
   return (
-    <header className="sticky top-0 bg-white">
+    <header className="sticky top-0 bg-white z-50">
       <div className="p-4 flex justify-between items-start">
         <div>
           <h1 className="text-[20px] font-[Poppins] font-medium">
@@ -64,10 +67,9 @@ const DashboardHeader = () => {
         <NavLink to={RouteDashboard}>
           <IoMdHome className="text-[#5570F1] text-[18px] cursor-pointer" />
         </NavLink>
-        {
-          pageTitle !== "Dashboard"  ? <p className="text-[12px]">/ {pageTitle}</p> : null
-        }
-        
+        {pageTitle !== "Dashboard" ? (
+          <p className="text-[12px]">/ {pageTitle}</p>
+        ) : null}
       </div>
     </header>
   );

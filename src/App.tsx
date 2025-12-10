@@ -6,12 +6,20 @@ import AppLayout from "./components/layout/AuthLayout";
 import DashboardLayout from "./components/layout/DashboardLayout";
 import DashboardHome from "./pages/DashboardHome";
 import NotFound from "./pages/NotFound";
-import { RouteDashboard, RouteDashboardConversations, RouteDashboardCustomers, RouteDashboardInventory, RouteDashboardOrders, RouteDashboardSettings } from "./pages/Routes";
+import {
+  RouteDashboard,
+  RouteDashboardConversations,
+  RouteDashboardCustomers,
+  RouteDashboardInventory,
+  RouteDashboardOrders,
+  RouteDashboardSettings,
+} from "./pages/Routes";
 import DashboardOrders from "./pages/DashboardOrders";
 import DashboardInventory from "./pages/DashboardInventory";
 import DashboardConversations from "./pages/DashboardConversations";
 import DashboardSettings from "./pages/DashboardSettings";
 import DashboardCustomers from "./pages/DashboardCustomers";
+import CustomerDetailed from "./pages/CustomerDetailed";
 
 function App() {
   const router = createBrowserRouter([
@@ -33,6 +41,10 @@ function App() {
       path: RouteDashboard,
       element: <DashboardLayout />,
       children: [
+        {
+          path: RouteDashboardCustomers+"/:id",
+          element: <CustomerDetailed />,
+        },
         {
           path: RouteDashboard,
           element: <DashboardHome />,
@@ -61,7 +73,7 @@ function App() {
     },
     {
       path: "*",
-      element: <NotFound />
+      element: <NotFound />,
     },
   ]);
   return <RouterProvider router={router} />;

@@ -5,7 +5,7 @@ const Cardthree = () => {
   return (
     <div className="bg-white p-4 rounded-lg flex flex-col gap-5">
       <div className="flex justify-between">
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-2 flex-wrap">
           <h3 className="text-[16px] font-medium text-[#45464E] font-[Inter]">
             Summary
           </h3>
