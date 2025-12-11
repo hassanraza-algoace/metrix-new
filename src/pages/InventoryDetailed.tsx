@@ -1,42 +1,43 @@
 import { useParams } from "react-router-dom";
-import { data } from "../components/UI/CustomersTable";
+import { data } from "../components/UI/InventoryTable";
 import Cards from "@/components/UI/Cards";
 import { FaRegCircleUser } from "react-icons/fa6";
-import { FiMapPin, FiShoppingCart } from "react-icons/fi";
 import { HiOutlineChartPie } from "react-icons/hi";
 import { BsHandbag } from "react-icons/bs";
+import { IoEyeOutline } from "react-icons/io5";
 
-export default function CustomerDetailed() {
+export default function InventoryDetailed() {
   const { id } = useParams();
-  const customer = data.find((c) => c.id === id);
+  const product = data.find((c) => c.id === id);
 
   return (
     <div className="w-full min-h-screen">
       <div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <h1 className="text-xl font-semibold">
-            Order Number #{customer?.id}
-          </h1>
+          <h1 className="text-xl font-semibold">{product?.productName}</h1>
           <div className="flex gap-3">
             <button className="px-4 py-2 rounded-xl text-white bg-[#1C1D22]">
-              Edit Customer
+              Edit product
             </button>
             <button className="px-4 py-2 rounded-xl bg-[#CC5F5F] text-white">
-              Suspend Customer
+              Suspend product
             </button>
           </div>
         </div>
 
         {/* Top Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-5 gap-4 mt-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-6 gap-4 mt-6">
+          <div className=" bg-white border rounded-2xl shadow-sm xl:col-start-1">
+            <img src={product?.productImageUrl} alt={product?.productName} />
+          </div>
           <div className=" bg-white border rounded-2xl shadow-sm xl:col-span-2">
             <Cards
               icons={FaRegCircleUser}
-              lastOrder={customer?.lastOrder}
+              lastOrder={product?.lastOrder}
               lastOrderClassName="block!"
-              customerName={customer?.name}
-              iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
-              filterContent="Active"
+              //   customerName={product?.productName}
+              iconClassName="hidden"
+              filterContent="Published"
               filterClassName="bg-[#32936F29] px-4 py-1 rounded-xl self-center"
               filterTextClassName="text-[#519C66]!"
               downIconClassName="hidden"
@@ -44,41 +45,36 @@ export default function CustomerDetailed() {
               divClassName={"w-fit"}
               vlueClassName="text-[14px]!"
               content={[
-                { id: 1, title: "Phone", description: customer?.phone },
-                { id: 2, title: "Email", description: customer?.email },
+                { id: 1, title: "Price", description: product?.unitPrice },
+                { id: 2, title: "In-Stock", description: product?.inStock },
               ]}
             />
           </div>
 
-          <div className="bg-white border rounded-2xl shadow-sm xl:col-span-2 xl:col-start-3">
+          <div className="bg-white border rounded-2xl shadow-sm xl:col-span-1 xl:col-start-4">
             <Cards
-              icons={FiMapPin}
-              iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
+              icons={HiOutlineChartPie}
+              iconClassName="bg-[#5570F114] text-[#5570F1] rounded-[8px] p-2"
               filterClassName="hidden"
               lastOrderClassName="hidden"
               downIconClassName="hidden"
               className="p-4 rounded-lg w-full"
-              divClassName={"w-[50%]"}
-              vlueClassName="text-[14px]!"
+              divClassName={"w-full"}
+              vlueClassName="text-[20px]!"
               content={[
                 {
                   id: 1,
-                  title: "Home Address",
-                  description: customer?.homeAddress,
-                },
-                {
-                  id: 2,
-                  title: "Billing Address",
-                  description: customer?.billingAddress,
+                  title: "Total Orders",
+                  description: product?.totalValue,
                 },
               ]}
             />
           </div>
 
-          <div className="bg-white border rounded-2xl shadow-sm xl:col-start-5">
+          <div className="bg-white border rounded-2xl shadow-sm xl:col-start-5 xl:col-span-2">
             <Cards
-              icons={HiOutlineChartPie}
-              iconClassName="bg-[#5570F114] text-[#5570F1] rounded-[8px] p-2"
+              icons={IoEyeOutline}
+              iconClassName="bg-[#FFCC9129] text-black rounded-[8px] p-2"
               filterContent="All-time"
               lastOrderClassName="hidden"
               className="p-4 rounded-lg w-full"
@@ -87,14 +83,19 @@ export default function CustomerDetailed() {
               content={[
                 {
                   id: 1,
-                  title: "Total Orders",
-                  description: "₦" + customer?.orderTotal,
+                  title: "Views",
+                  description: product?.views,
+                },
+                {
+                  id: 2,
+                  title: "Favourite",
+                  description: product?.favourite,
                 },
               ]}
             />
           </div>
 
-          <div className="bg-white border rounded-2xl shadow-sm xl:col-span-2">
+          <div className="bg-white border rounded-2xl shadow-sm xl:col-span-3">
             <Cards
               icons={BsHandbag}
               iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
@@ -107,22 +108,22 @@ export default function CustomerDetailed() {
                 {
                   id: 1,
                   title: "All Orders",
-                  description: customer?.allOrders,
+                  description: product?.allOrders,
                 },
                 {
                   id: 2,
                   title: "Pending",
-                  description: customer?.pending,
+                  description: product?.pending,
                 },
                 {
                   id: 3,
                   title: "Completed",
-                  description: customer?.completed,
+                  description: product?.completed,
                 },
               ]}
             />
           </div>
-          <div className="bg-white border rounded-2xl shadow-sm xl:col-span-2">
+          <div className="bg-white border rounded-2xl shadow-sm xl:col-span-3">
             <Cards
               icons={BsHandbag}
               iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
@@ -135,36 +136,17 @@ export default function CustomerDetailed() {
                 {
                   id: 1,
                   title: "Canceled",
-                  description: customer?.canceled,
+                  description: product?.canceled,
                 },
                 {
                   id: 2,
                   title: "Returned",
-                  description: customer?.returned,
+                  description: product?.returned,
                 },
                 {
                   id: 3,
                   title: "Damaged",
-                  description: customer?.damaged,
-                },
-              ]}
-            />
-          </div>
-          <div className="bg-white border rounded-2xl shadow-sm xl:col-start-5">
-            <Cards
-              icons={FiShoppingCart}
-              iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
-              lastOrderClassName="hidden"
-              downIconClassName="hidden"
-              className="p-4 rounded-lg w-full"
-              divClassName={"w-full"}
-              titleClassName="text-[#CC5F5F]"
-              vlueClassName="text-[20px]!"
-              content={[
-                {
-                  id: 1,
-                  title: "Abandoned Cart",
-                  description: customer?.abandonedCart,
+                  description: product?.damaged,
                 },
               ]}
             />
@@ -173,9 +155,7 @@ export default function CustomerDetailed() {
 
         {/* Orders Table */}
         <div className="mt-8 bg-white rounded-2xl p-4 shadow-sm">
-          <h2 className="text-lg font-semibold mb-4">
-            {customer?.name}'s Orders
-          </h2>
+          <h2 className="text-lg font-semibold mb-4">Purchases</h2>
 
           <div className="overflow-x-auto">
             <table className="w-full text-left min-w-[700px]">
@@ -190,8 +170,8 @@ export default function CustomerDetailed() {
                 </tr>
               </thead>
 
-              <tbody>
-                {customer?.ordersList?.map((order, i) => (
+              {/* <tbody>
+                {product?.ordersList?.map((order, i) => (
                   <tr key={i} className="border-b text-sm">
                     <td className="py-3">{order.date}</td>
                     <td>{order.type}</td>
@@ -217,7 +197,7 @@ export default function CustomerDetailed() {
                     </td>
                   </tr>
                 ))}
-              </tbody>
+              </tbody> */}
             </table>
           </div>
         </div>

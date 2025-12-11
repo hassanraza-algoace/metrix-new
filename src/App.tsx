@@ -11,6 +11,7 @@ import {
   RouteDashboardConversations,
   RouteDashboardCustomers,
   RouteDashboardInventory,
+  RouteDashboardInventoryAdd,
   RouteDashboardOrders,
   RouteDashboardSettings,
 } from "./pages/Routes";
@@ -20,6 +21,8 @@ import DashboardConversations from "./pages/DashboardConversations";
 import DashboardSettings from "./pages/DashboardSettings";
 import DashboardCustomers from "./pages/DashboardCustomers";
 import CustomerDetailed from "./pages/CustomerDetailed";
+import NewInventory from "./pages/NewInventory";
+import InventoryDetailed from "./pages/InventoryDetailed";
 
 function App() {
   const router = createBrowserRouter([
@@ -42,10 +45,6 @@ function App() {
       element: <DashboardLayout />,
       children: [
         {
-          path: RouteDashboardCustomers+"/:id",
-          element: <CustomerDetailed />,
-        },
-        {
           path: RouteDashboard,
           element: <DashboardHome />,
         },
@@ -58,8 +57,20 @@ function App() {
           element: <DashboardCustomers />,
         },
         {
+          path: RouteDashboardCustomers + "/:id",
+          element: <CustomerDetailed />,
+        },
+        {
           path: RouteDashboardInventory,
           element: <DashboardInventory />,
+        },
+        {
+          path: RouteDashboardInventory + "/:id",
+          element: <InventoryDetailed />,
+        },
+        {
+          path: RouteDashboardInventoryAdd,
+          element: <NewInventory />,
         },
         {
           path: RouteDashboardConversations,

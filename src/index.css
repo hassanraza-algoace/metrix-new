@@ -18,3 +18,22 @@
   padding: 0;
   box-sizing: border-box;
 } */
+
+/* Remove date icon */
+/* Remove default icon from date input */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+/* Remove default icon from time input */
+input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0;
+  display: none;
+}
+
+input[type="date"],
+input[type="time"] {
+  appearance: none;
+  -moz-appearance: textfield;
+}

@@ -40,7 +40,7 @@ import {
 import { NavLink } from "react-router-dom";
 import { RouteDashboardCustomers } from "@/pages/Routes";
 
-const data: Payment[] = [
+export const data: Payment[] = [
   {
     id: "m5gr84i9",
     amount: 316,
@@ -51,7 +51,50 @@ const data: Payment[] = [
     orders: 5,
     orderTotal: 1200,
     customerSince: "2021-03-12",
+
+    // NEW FIELDS
+    lastOrder: "12 Sept 2022 – 12:55 pm",
+    homeAddress: "No. 15 Adekunle Street, Yaba, Lagos State",
+    billingAddress: "No. 15 Adekunle Street, Yaba, Lagos State",
+    abandonedCart: 2,
+
+    allOrders: 10,
+    pending: 2,
+    completed: 8,
+    canceled: 0,
+    returned: 0,
+    damaged: 0,
+
+    totalOrdersAmount: 25000,
+
+    ordersList: [
+      {
+        date: "12 Aug 2022 - 12:25 am",
+        type: "Home Delivery",
+        tracking: "9348fj73",
+        total: 25000,
+        action: "Completed",
+        status: "Completed",
+      },
+      {
+        date: "12 Aug 2022 - 12:25 am",
+        type: "Home Delivery",
+        tracking: "9348fj73",
+        total: 25000,
+        action: "In-Progress",
+        status: "In-Progress",
+      },
+      {
+        date: "12 Aug 2022 - 12:25 am",
+        type: "Pick Up",
+        tracking: "9348fj73",
+        total: 25000,
+        action: "Pending",
+        status: "Pending",
+      },
+    ],
   },
+
   {
     id: "3u1reuv4",
     amount: 242,
@@ -62,7 +105,33 @@ const data: Payment[] = [
     orders: 3,
     orderTotal: 650,
     customerSince: "2022-01-05",
+
+    lastOrder: "10 Sept 2022 – 04:30 pm",
+    homeAddress: "Block 3, Lekki Phase 1, Lagos",
+    billingAddress: "Block 3, Lekki Phase 1, Lagos",
+    abandonedCart: 1,
+
+    allOrders: 5,
+    pending: 1,
+    completed: 4,
+    canceled: 0,
+    returned: 0,
+    damaged: 0,
+
+    totalOrdersAmount: 12000,
+
+    ordersList: [
+      {
+        date: "05 Aug 2022",
+        type: "Home Delivery",
+        tracking: "7438fd92",
+        total: 12000,
+        action: "Completed",
+        status: "Completed",
+      },
+    ],
   },
+
   {
     id: "derv1ws0",
     amount: 837,
@@ -73,7 +142,33 @@ const data: Payment[] = [
     orders: 7,
     orderTotal: 3500,
     customerSince: "2020-07-21",
+
+    lastOrder: "03 Sept 2022 – 08:10 pm",
+    homeAddress: "Apt 22, Downtown Street, NY",
+    billingAddress: "Apt 22, Downtown Street, NY",
+    abandonedCart: 0,
+
+    allOrders: 15,
+    pending: 3,
+    completed: 10,
+    canceled: 1,
+    returned: 0,
+    damaged: 1,
+
+    totalOrdersAmount: 37000,
+
+    ordersList: [
+      {
+        date: "20 Aug 2022",
+        type: "Pick Up",
+        tracking: "9983lp12",
+        total: 37000,
+        action: "In-Progress",
+        status: "In-Progress",
+      },
+    ],
   },
+
   {
     id: "5kma53ae",
     amount: 874,
@@ -84,7 +179,33 @@ const data: Payment[] = [
     orders: 10,
     orderTotal: 5500,
     customerSince: "2019-11-11",
+
+    lastOrder: "01 Sept 2022 – 10:00 am",
+    homeAddress: "6th Avenue, Manhattan, NY",
+    billingAddress: "6th Avenue, Manhattan, NY",
+    abandonedCart: 0,
+
+    allOrders: 20,
+    pending: 2,
+    completed: 18,
+    canceled: 0,
+    returned: 0,
+    damaged: 0,
+
+    totalOrdersAmount: 58000,
+
+    ordersList: [
+      {
+        date: "15 Aug 2022",
+        type: "Home Delivery",
+        tracking: "abc94212",
+        total: 58000,
+        action: "Completed",
+        status: "Completed",
+      },
+    ],
   },
+
   {
     id: "bhqecj4p",
     amount: 721,
@@ -95,6 +216,31 @@ const data: Payment[] = [
     orders: 4,
     orderTotal: 1800,
     customerSince: "2021-06-02",
+
+    lastOrder: "02 Sept 2022 – 06:40 pm",
+    homeAddress: "Westwood St, California",
+    billingAddress: "Westwood St, California",
+    abandonedCart: 3,
+
+    allOrders: 12,
+    pending: 4,
+    completed: 5,
+    canceled: 2,
+    returned: 1,
+    damaged: 0,
+
+    totalOrdersAmount: 15000,
+
+    ordersList: [
+      {
+        date: "18 Aug 2022",
+        type: "Home Delivery",
+        tracking: "pqr99822",
+        total: 15000,
+        action: "Failed",
+        status: "Failed",
+      },
+    ],
   },
 ];
 
@@ -108,7 +254,33 @@ export type Payment = {
   name: string;
   phone: string;
   customerSince: string;
+
+  // NEW FIELDS
+  lastOrder: string;
+  homeAddress: string;
+  billingAddress: string;
+
+  abandonedCart: number;
+
+  allOrders: number;
+  pending: number;
+  completed: number;
+  canceled: number;
+  returned: number;
+  damaged: number;
+
+  totalOrdersAmount: number;
+
+  ordersList: {
+    date: string;
+    type: string;
+    tracking: string;
+    total: number;
+    action: string;
+    status: "Completed" | "In-Progress" | "Pending" | "Failed";
+  }[];
 };
+
 
 export const columns: ColumnDef<Payment>[] = [
   {
@@ -146,9 +318,7 @@ export const columns: ColumnDef<Payment>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="capitalize">{row.getValue("name")}</div>
-    ),
+    cell: ({ row }) => <div className="capitalize">{row.getValue("name")}</div>,
   },
   {
     accessorKey: "email",
@@ -163,18 +333,14 @@ export const columns: ColumnDef<Payment>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("email")}</div>
-    ),
+    cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
   },
   {
     accessorKey: "phone",
     header: () => {
       return <div>Phone</div>;
     },
-    cell: ({ row }) => (
-      <div className="lowercase">{row.getValue("phone")}</div>
-    ),
+    cell: ({ row }) => <div className="lowercase">{row.getValue("phone")}</div>,
   },
   {
     accessorKey: "orders",
@@ -275,7 +441,6 @@ export const columns: ColumnDef<Payment>[] = [
     ),
   },
 ];
-
 
 function CustomersTable() {
   const [sorting, setSorting] = React.useState<SortingState>([]);
