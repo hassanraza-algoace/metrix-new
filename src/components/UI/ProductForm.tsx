@@ -412,14 +412,14 @@ const ProductForm: React.FC = () => {
         {/* Right Column - Image Upload */}
         <div className="w-full lg:w-80 shrink-0 flex flex-col gap-6 bg-white p-4 rounded-xl">
           {/* Cover Image */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
-            <div className="flex flex-col items-center justify-center py-12 border-2 border-dashed border-gray-200 rounded-lg">
+          <div className="bg-white rounded-lg border border-gray-200 p-2 md:p-6">
+            <div className="flex p-0.5 md:p-0 flex-col items-center justify-center py-12 border-2 border-dashed border-gray-200 rounded-lg">
               <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
                 <span className="text-3xl">
                   <BsFillImageFill className="text-[#5570F1]" />
                 </span>
               </div>
-              <label className="text-blue-600 cursor-pointer hover:text-blue-700">
+              <label className="text-blue-600 text-center cursor-pointer hover:text-blue-700">
                 Upload Image
                 <input
                   type="file"
@@ -443,7 +443,7 @@ const ProductForm: React.FC = () => {
           </div>
 
           {/* Additional Images */}
-          <div className="bg-white rounded-lg border border-gray-200 p-6">
+          <div className="bg-white rounded-lg border border-gray-200 p-2 md:p-6">
             <h3 className="text-sm font-medium text-gray-700 mb-4">
               Additional Images
             </h3>
@@ -454,7 +454,7 @@ const ProductForm: React.FC = () => {
                     <BsFillImageFill className="text-[#5570F1]" />
                   </span>
                 </div>
-                <label className="text-blue-600 text-sm cursor-pointer hover:text-blue-700">
+                <label className="text-blue-600 text-center text-sm cursor-pointer hover:text-blue-700">
                   Upload Image
                   <input type="file" accept="image/*" className="hidden" />
                 </label>

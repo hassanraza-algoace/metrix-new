@@ -99,7 +99,8 @@ export const data: Products[] = [
     totalValue: "₦50,000.00",
     action: "Publish",
     status: "Published",
-    productImageUrl: "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iphone13pro-facetime_09142021_big.jpg.large.jpg",
+    productImageUrl:
+      "https://img-prd-pim.poorvika.com/product/apple-iphone-13-pro-alpine-green-1TBgb-front-side-view.png",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -146,7 +147,8 @@ export const data: Products[] = [
     totalValue: "₦50,000.00",
     action: "Publish",
     status: "Published",
-    productImageUrl: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-family-hero-all-colors.jpg",
+    productImageUrl:
+      "https://i.ebayimg.com/images/g/eacAAOSwR-li6O-m/s-l640.jpg",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -193,7 +195,8 @@ export const data: Products[] = [
     totalValue: "₦50,000.00",
     action: "Unpublish",
     status: "Unpublished",
-    productImageUrl: "https://contents.mediadecathlon.com/p2080002/k$3cc4239c8f88d49fc45b0c153d983ee5/sq/polo-shirt.jpg",
+    productImageUrl:
+      "https://avatars.mds.yandex.net/get-mpic/12280826/2a00000195e38318b76f8ff8802815b2a9fe/orig",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -240,7 +243,8 @@ export const data: Products[] = [
     totalValue: "₦0.00",
     action: "Unpublish",
     status: "Unpublished",
-    productImageUrl: "https://contents.mediadecathlon.com/p2080002/k$3cc4239c8f88d49fc45b0c153d983ee5/sq/polo-shirt.jpg",
+    productImageUrl:
+      "https://i.ebayimg.com/images/g/5HEAAOSwn6hnC8lk/s-l500.jpg",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -287,7 +291,8 @@ export const data: Products[] = [
     totalValue: "₦0.00",
     action: "Unpublish",
     status: "Unpublished",
-    productImageUrl: "https://contents.mediadecathlon.com/p2080002/k$3cc4239c8f88d49fc45b0c153d983ee5/sq/polo-shirt.jpg",
+    productImageUrl:
+      "https://img.joomcdn.net/29c7ffc83741e9a079c2b839c40abade1ef26225_original.jpeg",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -334,7 +339,8 @@ export const data: Products[] = [
     totalValue: "₦50,000.00",
     action: "Publish",
     status: "Published",
-    productImageUrl: "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iphone13pro-facetime_09142021_big.jpg.large.jpg",
+    productImageUrl:
+      "https://i.moyo.ua/img/products/6385/82_4000.jpg?1742556685",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -381,7 +387,8 @@ export const data: Products[] = [
     totalValue: "₦50,000.00",
     action: "Publish",
     status: "Published",
-    productImageUrl: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-family-hero-all-colors.jpg",
+    productImageUrl:
+      "https://i.ebayimg.com/images/g/e1oAAOSwOzRjLBOt/s-l640.jpg",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -428,7 +435,8 @@ export const data: Products[] = [
     totalValue: "₦50,000.00",
     action: "Publish",
     status: "Published",
-    productImageUrl: "https://www.apple.com/newsroom/images/product/iphone/standard/Apple_iphone13pro-facetime_09142021_big.jpg.large.jpg",
+    productImageUrl:
+      "https://avatars.mds.yandex.net/get-marketpic/1847688/pic96d006648fb503611985e24f7b6152ab/orig",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -475,7 +483,8 @@ export const data: Products[] = [
     totalValue: "₦50,000.00",
     action: "Publish",
     status: "Published",
-    productImageUrl: "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/iphone-12-pro-family-hero-all-colors.jpg",
+    productImageUrl:
+      "https://i.ebayimg.com/images/g/a4QAAOSwnGljcQWv/s-l960.jpg",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -522,7 +531,8 @@ export const data: Products[] = [
     totalValue: "₦50,000.00",
     action: "Unpublish",
     status: "Unpublished",
-    productImageUrl: "https://contents.mediadecathlon.com/p2080002/k$3cc4239c8f88d49fc45b0c153d983ee5/sq/polo-shirt.jpg",
+    productImageUrl:
+      "https://i5.walmartimages.com/asr/17da7bc4-65a4-4139-b63c-93ccfff463d1.8828fed73be308bdade072722e6954ac.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFFhttps://contents.mediadecathlon.com/p2080002/k$3cc4239c8f88d49fc45b0c153d983ee5/sq/polo-shirt.jpg",
     lastOrder: "12 Sept 2022",
     published: "Published",
     allTimePrice: "₦25,000.00",
@@ -561,8 +571,6 @@ export const data: Products[] = [
   },
 ];
 
-
-
 export const columns: ColumnDef<Products>[] = [
   {
     id: "select",
@@ -587,19 +595,31 @@ export const columns: ColumnDef<Products>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "productName",
-    header: ({ column }) => {
+    accessorKey: "productName", // yeh rehne do
+    header: ({ column }) => (
+      <Button
+        variant="ghost"
+        onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
+      >
+        Product Name
+        <ArrowUpDown className="ml-2 h-4 w-4" />
+      </Button>
+    ),
+
+    cell: ({ row }) => {
+      const item = row.original; // is me full row ka data hota hai
+
       return (
-        <Button
-          variant="ghost"
-          onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}
-        >
-          Product Name
-          <ArrowUpDown />
-        </Button>
+        <div className="flex items-center gap-3 capitalize">
+          <img
+            src={item.productImageUrl}
+            alt={item.productName}
+            className="w-10 h-10 rounded-md object-cover"
+          />
+          <span>{item.productName}</span>
+        </div>
       );
     },
-    cell: ({ row }) => <div className="capitalize">{row.getValue("productName")}</div>,
   },
   {
     accessorKey: "category",
@@ -614,14 +634,18 @@ export const columns: ColumnDef<Products>[] = [
         </Button>
       );
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("category")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase">{row.getValue("category")}</div>
+    ),
   },
   {
     accessorKey: "unitPrice",
     header: () => {
       return <div>Unit Price</div>;
     },
-    cell: ({ row }) => <div className="lowercase">{row.getValue("unitPrice")}</div>,
+    cell: ({ row }) => (
+      <div className="lowercase">{row.getValue("unitPrice")}</div>
+    ),
   },
   {
     accessorKey: "inStock",
@@ -654,7 +678,9 @@ export const columns: ColumnDef<Products>[] = [
     accessorKey: "action",
     header: () => <div className="text-right">Action</div>,
     cell: ({ row }) => {
-      return <div className="text-right font-medium">{row.getValue("action")}</div>;
+      return (
+        <div className="text-right font-medium">{row.getValue("action")}</div>
+      );
     },
   },
   {
@@ -682,11 +708,11 @@ export const columns: ColumnDef<Products>[] = [
             <DropdownMenuItem>
               {
                 <NavLink to={`${RouteDashboardInventory}/${payment.id}`}>
-                  View customer
+                  View Inventory Detailes
                 </NavLink>
               }
             </DropdownMenuItem>
-            <DropdownMenuItem>View payment details</DropdownMenuItem>
+            {/* <DropdownMenuItem>View payment details</DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -748,7 +774,9 @@ function InventoryTable() {
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter Product Name..."
-          value={(table.getColumn("productName")?.getFilterValue() as string) ?? ""}
+          value={
+            (table.getColumn("productName")?.getFilterValue() as string) ?? ""
+          }
           onChange={(event) =>
             table.getColumn("productName")?.setFilterValue(event.target.value)
           }

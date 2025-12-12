@@ -15,11 +15,11 @@ export default function InventoryDetailed() {
       <div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
           <h1 className="text-xl font-semibold">{product?.productName}</h1>
-          <div className="flex gap-3">
-            <button className="px-4 py-2 rounded-xl text-white bg-[#1C1D22]">
+          <div className="flex flex-wrap md:flex-nowrap gap-3">
+            <button className="px-4 py-2 rounded-xl w-full md:w-fit text-white bg-[#1C1D22]">
               Edit product
             </button>
-            <button className="px-4 py-2 rounded-xl bg-[#CC5F5F] text-white">
+            <button className="px-4 py-2 rounded-xl w-full md:w-fit bg-[#CC5F5F] text-white">
               Suspend product
             </button>
           </div>
@@ -27,10 +27,15 @@ export default function InventoryDetailed() {
 
         {/* Top Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-6 gap-4 mt-6">
-          <div className=" bg-white border rounded-2xl shadow-sm xl:col-start-1">
-            <img src={product?.productImageUrl} alt={product?.productName} />
+          <div className=" bg-white border rounded-2xl shadow-sm xl:col-start-1 flex justify-center items-center">
+            <img
+              src={product?.productImageUrl}
+              alt={product?.productName}
+              title={product?.productName}
+              width={100}
+            />
           </div>
-          <div className=" bg-white border rounded-2xl shadow-sm xl:col-span-2">
+          <div className=" bg-white border rounded-2xl content-center shadow-sm xl:col-span-2">
             <Cards
               icons={FaRegCircleUser}
               lastOrder={product?.lastOrder}
@@ -51,7 +56,7 @@ export default function InventoryDetailed() {
             />
           </div>
 
-          <div className="bg-white border rounded-2xl shadow-sm xl:col-span-1 xl:col-start-4">
+          <div className="bg-white border rounded-2xl content-center shadow-sm xl:col-span-1 xl:col-start-4">
             <Cards
               icons={HiOutlineChartPie}
               iconClassName="bg-[#5570F114] text-[#5570F1] rounded-[8px] p-2"
@@ -71,7 +76,7 @@ export default function InventoryDetailed() {
             />
           </div>
 
-          <div className="bg-white border rounded-2xl shadow-sm xl:col-start-5 xl:col-span-2">
+          <div className="bg-white border rounded-2xl content-center shadow-sm xl:col-start-5 xl:col-span-2">
             <Cards
               icons={IoEyeOutline}
               iconClassName="bg-[#FFCC9129] text-black rounded-[8px] p-2"
@@ -95,7 +100,7 @@ export default function InventoryDetailed() {
             />
           </div>
 
-          <div className="bg-white border rounded-2xl shadow-sm xl:col-span-3">
+          <div className="bg-white border rounded-2xl content-center shadow-sm xl:col-span-3">
             <Cards
               icons={BsHandbag}
               iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
@@ -123,7 +128,7 @@ export default function InventoryDetailed() {
               ]}
             />
           </div>
-          <div className="bg-white border rounded-2xl shadow-sm xl:col-span-3">
+          <div className="bg-white border rounded-2xl content-center shadow-sm xl:col-span-3">
             <Cards
               icons={BsHandbag}
               iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
@@ -163,41 +168,49 @@ export default function InventoryDetailed() {
                 <tr className="text-gray-500 text-sm border-b">
                   <th className="py-3">Order Date</th>
                   <th>Order Type</th>
-                  <th>Tracking ID</th>
+                  <th>Unit Price</th>
+                  <th>Qty</th>
+                  <th>Discount</th>
                   <th>Order Total</th>
-                  <th>Action</th>
                   <th>Status</th>
                 </tr>
               </thead>
 
-              {/* <tbody>
-                {product?.ordersList?.map((order, i) => (
+              <tbody>
+                {product?.purchases?.map((items, i) => (
                   <tr key={i} className="border-b text-sm">
-                    <td className="py-3">{order.date}</td>
-                    <td>{order.type}</td>
-                    <td>{order.tracking}</td>
-                    <td>₦{order.total}</td>
+                    <td className="py-3">{items.orderDate}</td>
+                    <td>{items.orderType}</td>
+                    <td>{items.unitPrice}</td>
+                    <td>{items.qty}</td>
                     <td>
                       <span className="px-3 py-1 bg-gray-200 rounded-xl text-xs">
-                        {order.action}
+                        {items.discount}
+                      </span>
+                    </td>
+                    <td>
+                      <span
+                        className={`px-3 py-1 bg-gray-200 rounded-xl text-xs`}
+                      >
+                        {items.orderTotal}
                       </span>
                     </td>
                     <td>
                       <span
                         className={`px-3 py-1 rounded-xl text-xs text-white ${
-                          order.status === "Completed"
+                          items.status === "Completed"
                             ? "bg-green-500"
-                            : order.status === "In-Progress"
+                            : items.status === "In-Progress"
                             ? "bg-blue-500"
                             : "bg-yellow-500"
                         }`}
                       >
-                        {order.status}
+                        {items.status}
                       </span>
                     </td>
                   </tr>
                 ))}
-              </tbody> */}
+              </tbody>
             </table>
           </div>
         </div>

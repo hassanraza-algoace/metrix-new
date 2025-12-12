@@ -14,7 +14,7 @@ export default function AddCustomerModal({ open, onClose }: Props) {
       {open && (
         <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-50">
           {/* Modal Card */}
-          <div className="bg-white rounded-2xl p-6 w-[360px] shadow-xl relative animate-scaleIn">
+          <div className="bg-white rounded-2xl p-6 w-[90%] md:w-[360px] shadow-xl relative animate-scaleIn">
             {/* Close Button */}
             <button
               onClick={onClose}

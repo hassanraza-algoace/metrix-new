@@ -2,13 +2,15 @@ import { Outlet } from "react-router-dom";
 import AutoTitle from "./AutoTitle";
 import DashboardHeader from "./DashboardHeader";
 import SideBar from "./SideBar";
+import ScrollToTop from "../ScrollToTop";
 
 const DashboardLayout = () => {
   return (
     <>
+      <ScrollToTop />
       <AutoTitle />
       <div className="flex w-full">
-        <div className="lg:w-[20%]">
+        <div className="lg:w-[20%] xl:w-fit">
           <SideBar />
         </div>
 
