@@ -4,7 +4,7 @@ import { CheckIcon } from "lucide-react"
 
 import { cn } from "../../lib/utils"
 
-function Checkbox({
+function CheckBox({
   className,
   ...props
 }: React.ComponentProps<typeof CheckboxPrimitive.Root>) {
@@ -27,4 +27,4 @@ function Checkbox({
   )
 }
 
-export { Checkbox }
+export { CheckBox }
