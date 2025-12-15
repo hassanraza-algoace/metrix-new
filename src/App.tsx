@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./App.css";
 import Login from "./pages/Login";
@@ -14,6 +15,8 @@ import {
   RouteDashboardInventoryAdd,
   RouteDashboardOrders,
   RouteDashboardSettings,
+  RouteLogin,
+  RouteSignup,
 } from "./pages/Routes";
 import DashboardOrders from "./pages/DashboardOrders";
 import DashboardInventory from "./pages/DashboardInventory";
@@ -23,26 +26,42 @@ import DashboardCustomers from "./pages/DashboardCustomers";
 import CustomerDetailed from "./pages/CustomerDetailed";
 import NewInventory from "./pages/NewInventory";
 import InventoryDetailed from "./pages/InventoryDetailed";
+import { initAuthListener } from "../services/authService";
+import ProtectedRoute from "./components/ProtectedRoute";
+import PublicRoute from "./components/PublicRoute";
 
 function App() {
+  useEffect(() => {
+    const unsubscribe = initAuthListener();
+    return () => unsubscribe();
+  }, []);
+
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <AppLayout />,
+      element: (
+        <PublicRoute>
+          <AppLayout />
+        </PublicRoute>
+      ),
       children: [
         {
-          path: "",
+          path: RouteLogin,
           element: <Login />,
         },
         {
-          path: "/signup",
+          path: RouteSignup,
           element: <Signup />,
         },
       ],
     },
     {
       path: RouteDashboard,
-      element: <DashboardLayout />,
+      element: (
+        <ProtectedRoute>
+          <DashboardLayout />
+        </ProtectedRoute>
+      ),
       children: [
         {
           path: RouteDashboard,
@@ -87,6 +106,7 @@ function App() {
       element: <NotFound />,
     },
   ]);
+
   return <RouterProvider router={router} />;
 }
 

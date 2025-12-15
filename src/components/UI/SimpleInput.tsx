@@ -3,7 +3,10 @@ import type { IconType } from "react-icons";
 interface InputProps {
   type: string;
   name: string;
+  value: string;
   id: string;
+  onChange: any;
+  required: any;
   placeholder: string;
   Icon?: IconType;
 }
@@ -11,7 +14,10 @@ const SimpleInput: React.FC<InputProps> = ({
   type,
   name,
   id,
+  value,
+  onChange,
   placeholder,
+  required,
   Icon,
 }) => {
   return (
@@ -22,6 +28,9 @@ const SimpleInput: React.FC<InputProps> = ({
         type={type}
         name={name}
         id={id}
+        onChange={onChange}
+        value={value}
+        required={required}
         placeholder={placeholder}
         className="text-[16px] border-0 outline-0 font-[Inter] w-full"
       />

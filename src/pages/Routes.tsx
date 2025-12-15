@@ -1,7 +1,9 @@
-export const RouteDashboard:string = "/dashboard"
-export const RouteDashboardOrders:string = RouteDashboard+"/orders"
-export const RouteDashboardCustomers:string = RouteDashboard+"/customers"
-export const RouteDashboardInventory:string = RouteDashboard+"/inventory"
-export const RouteDashboardInventoryAdd:string = RouteDashboardInventory+"/newinventory"
-export const RouteDashboardConversations:string = RouteDashboard+"/conversations"
-export const RouteDashboardSettings:string = RouteDashboard+"/settings"
+export const RouteLogin: string = "/";
+export const RouteSignup: string = "/signup";
+export const RouteDashboard: string = "/dashboard";
+export const RouteDashboardOrders: string = RouteDashboard + "/orders";
+export const RouteDashboardCustomers: string = RouteDashboard + "/customers";
+export const RouteDashboardInventory: string = RouteDashboard + "/inventory";
+export const RouteDashboardInventoryAdd: string = RouteDashboardInventory + "/newinventory";
+export const RouteDashboardConversations: string = RouteDashboard + "/conversations";
+export const RouteDashboardSettings: string = RouteDashboard + "/settings";

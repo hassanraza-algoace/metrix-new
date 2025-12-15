@@ -36,3 +36,6 @@ input[type="time"] {
   appearance: none;
   -moz-appearance: textfield;
 }
+div[data-radix-popper-content-wrapper] {
+    background-color: whitesmoke;
+}

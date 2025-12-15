@@ -6,6 +6,9 @@ interface PasswordInputProps {
   type: string;
   name: string;
   id: string;
+  value: string;
+  onChange: any;
+  required: any;
   placeholder: string;
   Icon?: IconType;
   Hide?: IconType;
@@ -15,8 +18,11 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   name,
   id,
   placeholder,
+  onChange,
+  required,
   Icon,
   Hide,
+  value,
 }) => {
 
     const [show , setShow] = useState(false)
@@ -28,6 +34,9 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
           type={show ? "text" : type}
           name={name}
           id={id}
+          value={value}
+          onChange={onChange}
+          required={required}
           placeholder={placeholder}
           className="text-[16px] border-0 outline-0 font-[Inter] w-full"
         />

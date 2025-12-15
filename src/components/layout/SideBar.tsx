@@ -21,6 +21,7 @@ import {
 import { FiGift, FiHeadphones } from "react-icons/fi";
 import { FaAngleRight } from "react-icons/fa";
 import { useMenuStore } from "../../store/useMenuStore";
+import { logout } from "../../../services/authService";
 
 type NavBarItem = {
   label: string;
@@ -171,6 +172,7 @@ const SideBar = () => {
               content={"Logout"}
               icon={<IoLogOut className="text-[12px]" />}
               className={`${btnclasses} text-[#CC5F5F]`}
+              onClick={() => logout()}
             />
           </div>
         </div>

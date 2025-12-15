@@ -472,7 +472,7 @@ function CustomersTable() {
   });
 
   return (
-    <div className="lg:w-full! lg:overflow-auto! w-full bg-white p-4 rounded-[12px]">
+    <div className="lg:w-full! lg:overflow-auto! w-full bg-white p-4 rounded-xl">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter emails..."
