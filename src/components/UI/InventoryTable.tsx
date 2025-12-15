@@ -580,7 +580,7 @@ export const columns: ColumnDef<Products>[] = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        onCheckedChange={(value: boolean) =>
+        onCheckedChange={(value: any) =>
           table.toggleAllPageRowsSelected(!!value)
         }
         aria-label="Select all"
@@ -589,7 +589,7 @@ export const columns: ColumnDef<Products>[] = [
     cell: ({ row }) => (
       <CheckBox
         checked={row.getIsSelected()}
-        onCheckedChange={(value: boolean) => row.toggleSelected(!!value)}
+        onCheckedChange={(value: any) => row.toggleSelected(!!value)}
         aria-label="Select row"
       />
     ),
@@ -779,7 +779,7 @@ function InventoryTable() {
           value={
             (table.getColumn("productName")?.getFilterValue() as string) ?? ""
           }
-          onChange={(event) =>
+          onChange={(event: any) =>
             table.getColumn("productName")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
@@ -800,7 +800,7 @@ function InventoryTable() {
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value) =>
+                    onCheckedChange={(value: any) =>
                       column.toggleVisibility(!!value)
                     }
                   >
