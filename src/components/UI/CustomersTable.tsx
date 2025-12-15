@@ -17,8 +17,8 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
-import { Button } from "./button";
-import { Checkbox } from "./checkbox";
+import { Button } from "./Button";
+import { Checkbox } from "./CheckBox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -27,8 +27,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "../../components/UI/dropdown-menu";
-import { Input } from "../../components/UI/input";
+} from "./Dropdown-menu";
+import { Input } from "./Input";
 import {
   Table,
   TableBody,
@@ -36,7 +36,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "../../components/UI/table";
+} from "./Table";
 import { NavLink } from "react-router-dom";
 import { RouteDashboardCustomers } from "../../pages/Routes";
 
@@ -280,7 +280,6 @@ export type Payment = {
     status: "Completed" | "In-Progress" | "Pending" | "Failed";
   }[];
 };
-
 
 export const columns: ColumnDef<Payment>[] = [
   {
