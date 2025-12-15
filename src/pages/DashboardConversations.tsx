@@ -1,4 +1,4 @@
-import MessagingApp from "@/components/UI/MessagingApp";
+import MessagingApp from "../components/UI/MessagingApp";
 
 
 

@@ -1,6 +1,6 @@
-import Cards from "@/components/UI/Cards";
-import InventoryTable from "@/components/UI/InventoryTable";
-import SimpleButton from "@/components/UI/SimpleButton";
+import Cards from "../components/UI/Cards";
+import InventoryTable from "../components/UI/InventoryTable";
+import SimpleButton from "../components/UI/SimpleButton";
 import { FaFolderMinus } from "react-icons/fa";
 import { GoPlus } from "react-icons/go";
 import { LuUsers } from "react-icons/lu";

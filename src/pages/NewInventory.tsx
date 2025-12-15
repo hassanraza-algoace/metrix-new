@@ -1,4 +1,4 @@
-import ProductForm from "@/components/UI/ProductForm";
+import ProductForm from "../components/UI/ProductForm";
 
 const NewInventory = () => {
   return (

@@ -5,7 +5,7 @@ import Cards from "../components/UI/Cards";
 import { BsHandbag } from "react-icons/bs";
 import CustomersTable from "../components/UI/CustomersTable";
 import { useState } from "react";
-import AddCustomerModal from "@/components/UI/AddCustomerModal";
+import AddCustomerModal from "../components/UI/AddCustomerModal";
 
 const DashboardCustomers = () => {
   const [openModal, setOpenModal] = useState(false);

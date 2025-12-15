@@ -20,7 +20,7 @@ import {
 } from "../../pages/Routes";
 import { FiGift, FiHeadphones } from "react-icons/fi";
 import { FaAngleRight } from "react-icons/fa";
-import { useMenuStore } from "@/store/useMenuStore";
+import { useMenuStore } from "../../store/useMenuStore";
 
 type NavBarItem = {
   label: string;

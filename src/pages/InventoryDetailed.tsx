@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import { data } from "../components/UI/InventoryTable";
-import Cards from "@/components/UI/Cards";
+import Cards from "../components/UI/Cards";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { HiOutlineChartPie } from "react-icons/hi";
 import { BsHandbag } from "react-icons/bs";

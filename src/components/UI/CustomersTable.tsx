@@ -17,8 +17,8 @@ import {
 } from "@tanstack/react-table";
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
-import { Button } from "@/components/UI/button";
-import { Checkbox } from "@/components/UI/checkbox";
+import { Button } from "../../components/UI/button";
+import { Checkbox } from "../../components/UI/checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -27,8 +27,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "@/components/UI/dropdown-menu";
-import { Input } from "@/components/UI/input";
+} from "../../components/UI/dropdown-menu";
+import { Input } from "../../components/UI/input";
 import {
   Table,
   TableBody,
@@ -36,9 +36,9 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "@/components/UI/table";
+} from "../../components/UI/table";
 import { NavLink } from "react-router-dom";
-import { RouteDashboardCustomers } from "@/pages/Routes";
+import { RouteDashboardCustomers } from "../../pages/Routes";
 
 export const data: Payment[] = [
   {
