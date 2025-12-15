@@ -3,7 +3,12 @@
 import { GoPlus } from "react-icons/go";
 import SimpleButton from "./SimpleButton";
 
-export default function RecentOrder({classes , mainClass}:any) {
+interface RecentOrderProps {
+  classes?: string;
+  mainClass?: string;
+}
+
+export default function RecentOrder({classes , mainClass}: RecentOrderProps) {
   return (
     <div className={`bg-white mx-auto p-4 rounded-lg min-h-full flex flex-col ${mainClass}`}>
       {/* Header */}

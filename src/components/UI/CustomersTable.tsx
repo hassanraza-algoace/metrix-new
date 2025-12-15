@@ -290,7 +290,7 @@ export const columns: ColumnDef<Payment>[] = [
           table.getIsAllPageRowsSelected() ||
           (table.getIsSomePageRowsSelected() && "indeterminate")
         }
-        onCheckedChange={(value: any) =>
+        onCheckedChange={(value: boolean) =>
           table.toggleAllPageRowsSelected(!!value)
         }
         aria-label="Select all"
@@ -299,7 +299,7 @@ export const columns: ColumnDef<Payment>[] = [
     cell: ({ row }) => (
       <CheckBox
         checked={row.getIsSelected()}
-        onCheckedChange={(value: any) => row.toggleSelected(!!value)}
+        onCheckedChange={(value: boolean) => row.toggleSelected(!!value)}
         aria-label="Select row"
       />
     ),
@@ -477,7 +477,7 @@ function CustomersTable() {
         <Input
           placeholder="Filter emails..."
           value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-          onChange={(event: any) =>
+          onChange={(event: React.ChangeEvent<HTMLInputElement>) =>
             table.getColumn("email")?.setFilterValue(event.target.value)
           }
           className="max-w-sm"
@@ -498,7 +498,7 @@ function CustomersTable() {
                     key={column.id}
                     className="capitalize"
                     checked={column.getIsVisible()}
-                    onCheckedChange={(value: any) =>
+                    onCheckedChange={(value: boolean) =>
                       column.toggleVisibility(!!value)
                     }
                   >

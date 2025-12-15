@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useMemo } from "react";
 import { IoIosArrowDown, IoMdHome } from "react-icons/io";
 import { PiBellSimpleFill } from "react-icons/pi";
 import { NavLink, useLocation } from "react-router-dom";
@@ -7,7 +7,7 @@ import { RouteDashboard } from "../../pages/Routes";
 const DashboardHeader = () => {
   const { pathname } = useLocation();
 
-  const getPageName = () => {
+  const pageTitle = useMemo(() => {
     const parts = pathname.split("/").filter(Boolean); // remove empty parts
     if (parts.length === 0) return "Login";
     if (parts[0] === "dashboard") {
@@ -18,15 +18,9 @@ const DashboardHeader = () => {
         : "Dashboard";
     }
     return parts[0].charAt(0).toUpperCase() + parts[0].slice(1);
-  };
-
-  const [pageTitle, setPageTitle] = useState(getPageName());
-  const [showProfile, setShowProfile] = useState(false);
-
-  // Update on pathname change (and also browser tab)
-  useEffect(() => {
-    setPageTitle(getPageName());
   }, [pathname]);
+
+  const [showProfile, setShowProfile] = useState(false);
   const handleProfile = () => {
     setShowProfile(!showProfile);
   };

@@ -101,6 +101,7 @@ const SideBar = () => {
       (item) => item.path === location.pathname
     );
     if (current) setActiveMenu(current.path);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [location.pathname, setActiveMenu]);
 
   const navBarClass = `text-[0px] lg:flex lg:items-center lg:justify-start lg:gap-2  lg:text-[14px] lg:font-[Inter] lg:font-normal p-2 lg:px-4 lg:py-[17px] rounded-xl text-[#53545C] lg:min-w-[180px] relative `;
@@ -122,11 +123,11 @@ const SideBar = () => {
           <ul className="flex flex-col gap-3">
             {initialNavBarItems.map((item) => {
               return (
-                <li>
-                  <NavLink key={item.path} to={item.url}>
+                <li key={item.path}>
+                  <NavLink to={item.url}>
                     <SimpleButton
                       content={item.label}
-                      onClick={() => {item.isSelected === true}}
+                      onClick={() => {}}
                       icon={<item.icon className="text-[12px]" />}
                       className={
                         activeMenu === item.path
