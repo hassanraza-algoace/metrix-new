@@ -49,7 +49,8 @@ const DashboardCustomers = () => {
           iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
           filterContent="This Week"
           className="p-4 rounded-lg w-full lg:max-w-[49%]"
-          divClassName={"w-[35%] nth-3:w-[30%]"}
+          divClassName={"sm:w-[35%] sm:nth-3:w-[30%]"}
+          titleClassName=""
           content={cardData1}
         />
         <Cards
@@ -57,7 +58,7 @@ const DashboardCustomers = () => {
           iconClassName="bg-[#FFCC9129] text-[#1C1D22] rounded-[8px] p-2"
           filterContent="This Week"
           className="p-4 rounded-lg w-full lg:max-w-[49%]"
-          divClassName={"w-[35%] nth-3:w-[30%]"}
+          divClassName={"sm:w-[35%] sm:nth-3:w-[30%]"}
           content={cardData2}
         />
       </div>

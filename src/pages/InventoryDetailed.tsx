@@ -27,7 +27,7 @@ export default function InventoryDetailed() {
 
         {/* Top Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-6 gap-4 mt-6">
-          <div className=" bg-white border rounded-2xl shadow-sm xl:col-start-1 flex justify-center items-center">
+          <div className=" p-1 bg-white border rounded-2xl shadow-sm xl:col-start-1 flex justify-center items-center">
             <img
               src={product?.productImageUrl}
               alt={product?.productName}

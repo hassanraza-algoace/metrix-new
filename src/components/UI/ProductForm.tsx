@@ -83,7 +83,7 @@ const ProductForm: React.FC = () => {
     <div className="min-h-screen">
       <div className="flex flex-wrap lg:flex-nowrap gap-2">
         {/* Left Column */}
-        <div className="flex-1 flex flex-col gap-6">
+        <div className="flex-1 w-full! flex flex-col gap-6">
           {/* Product Name and Short Description */}
           <div className="flex bg-white p-4 rounded-xl flex-wrap lg:flex-nowrap justify-between gap-2">
             <div className="flex w-full flex-col gap-10 lg:w-[50%]">
@@ -212,7 +212,7 @@ const ProductForm: React.FC = () => {
 
               {/* Discount and Expiry Date Toggles */}
               <div className="flex flex-col gap-3">
-                <div className="flex items-center justify-between px-4 py-3 bg-white rounded-lg border border-gray-200">
+                <div className="flex flex-wrap items-center justify-between px-4 py-3 bg-white rounded-lg border border-gray-200">
                   <span className="text-gray-600">Discount</span>
                   <div className="flex items-center gap-3">
                     <span className="text-blue-600 text-sm">Add Discount</span>
@@ -231,7 +231,7 @@ const ProductForm: React.FC = () => {
                   </div>
                 </div>
 
-                <div className="flex items-center justify-between px-4 py-3 bg-white rounded-lg border border-gray-200">
+                <div className="flex flex-wrap items-center justify-between px-4 py-3 bg-white rounded-lg border border-gray-200">
                   <span className="text-gray-600">Expiry Date</span>
                   <div className="flex items-center gap-3">
                     <span className="text-blue-600 text-sm">
@@ -282,7 +282,7 @@ const ProductForm: React.FC = () => {
                   <select className="px-2 py-1 bg-gray-50 border border-gray-200 rounded text-sm">
                     <option>Paragraph</option>
                   </select>
-                  <div className="flex gap-1 ml-2">
+                  <div className="flex gap-1 ml-2 flex-wrap">
                     <button
                       onClick={(e) => {
                         e.preventDefault();
@@ -358,11 +358,11 @@ const ProductForm: React.FC = () => {
 
               {/* Return Policy */}
               <div className="bg-white rounded-lg border border-gray-200 p-4">
-                <div className="flex items-center justify-between mb-4">
+                <div className="flex flex-wrap items-center justify-between mb-4">
                   <h3 className="text-sm font-medium text-gray-700">
                     Return Policy
                   </h3>
-                  <div className="flex items-center gap-3">
+                  <div className="flex  items-center gap-3">
                     <span className="text-blue-600 text-sm">Add Discount</span>
                     <button
                       onClick={(e) => handleToggle("discount", e)}
@@ -413,7 +413,7 @@ const ProductForm: React.FC = () => {
         <div className="w-full lg:w-80 shrink-0 flex flex-col gap-6 bg-white p-4 rounded-xl">
           {/* Cover Image */}
           <div className="bg-white rounded-lg border border-gray-200 p-2 md:p-6">
-            <div className="flex p-0.5 md:p-0 flex-col items-center justify-center py-12 border-2 border-dashed border-gray-200 rounded-lg">
+            <div className="flex p-0.5 md:p-2 flex-col items-center justify-center py-12 border-2 border-dashed border-gray-200 rounded-lg">
               <div className="w-16 h-16 bg-blue-100 rounded-xl flex items-center justify-center mb-4">
                 <span className="text-3xl">
                   <BsFillImageFill className="text-[#5570F1]" />
@@ -447,8 +447,8 @@ const ProductForm: React.FC = () => {
             <h3 className="text-sm font-medium text-gray-700 mb-4">
               Additional Images
             </h3>
-            <div className="flex gap-4">
-              <div className="flex-1 flex flex-col items-center justify-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
+            <div className="flex flex-wrap md:flex-nowrap gap-4">
+              <div className="w-full md:flex-1 flex flex-col items-center justify-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
                 <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-2">
                   <span className="text-2xl">
                     <BsFillImageFill className="text-[#5570F1]" />
@@ -459,7 +459,7 @@ const ProductForm: React.FC = () => {
                   <input type="file" accept="image/*" className="hidden" />
                 </label>
               </div>
-              <div className="flex-1 flex flex-col items-center justify-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
+              <div className="w-full  md:flex-1 flex flex-col items-center justify-center py-8 border-2 border-dashed border-gray-200 rounded-lg">
                 <span className="text-gray-300 text-2xl">+</span>
               </div>
             </div>

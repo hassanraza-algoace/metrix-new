@@ -17,11 +17,11 @@ export default function CustomerDetailed() {
           <h1 className="text-xl font-semibold">
             Order Number #{customer?.id}
           </h1>
-          <div className="flex gap-3">
-            <button className="px-4 py-2 rounded-xl text-white bg-[#1C1D22]">
+          <div className="flex flex-wrap gap-3">
+            <button className="w-full sm:w-fit  px-4 py-2 rounded-xl text-white bg-[#1C1D22]">
               Edit Customer
             </button>
-            <button className="px-4 py-2 rounded-xl bg-[#CC5F5F] text-white">
+            <button className="w-full sm:w-fit px-4 py-2 rounded-xl bg-[#CC5F5F] text-white">
               Suspend Customer
             </button>
           </div>
@@ -58,7 +58,7 @@ export default function CustomerDetailed() {
               lastOrderClassName="hidden"
               downIconClassName="hidden"
               className="p-4 rounded-lg w-full"
-              divClassName={"w-[50%]"}
+              divClassName={"sm:w-[50%]"}
               vlueClassName="text-[14px]!"
               content={[
                 {

@@ -50,7 +50,7 @@ const DashboardInventory = () => {
           filterContent="This Week"
           lastOrderClassName="hidden"
           className="p-4 rounded-lg w-full lg:max-w-[49%]"
-          divClassName={"w-[35%] nth-3:w-[30%]"}
+          divClassName={"w-[50%] sm:w-[35%] sm:nth-3:w-[30%]"}
           content={[
             {
               id: 1,

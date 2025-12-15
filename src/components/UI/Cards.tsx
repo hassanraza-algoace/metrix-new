@@ -47,7 +47,7 @@ const Cards: React.FC<CardsProps> = ({
   return (
     <div className={`bg-white flex flex-col ${className || ""}`}>
       <div className="flex justify-between">
-        <div className="flex gap-1 items-center">
+        <div className="flex flex-wrap sm:flex-nowrap gap-1 items-start">
           <div className={` ${iconClassName || ""}`}>
             <Icon className="text-[16px]" />
           </div>
@@ -77,11 +77,11 @@ const Cards: React.FC<CardsProps> = ({
           />
         </div>
       </div>
-      <div className="flex justify-between">
+      <div className="flex justify-between flex-wrap">
         {content.map((item) => (
           <div key={item.id} className={`mt-5 ${divClassName || ""}`}>
             <h3
-              className={`font-normal text-[14px] fnot-[Inter] text-[#8B8D97] ${
+              className={`font-normal text-[12px] sm:text-[14px] fnot-[Inter] text-[#8B8D97] ${
                 titleClassName || ""
               } ${item.titleClass}`}
             >
@@ -90,7 +90,7 @@ const Cards: React.FC<CardsProps> = ({
             <div className={`flex items-center gap-1 ${vlueClassName || ""}`}>
               {item.description && (
                 <p
-                  className={`font-[Poppins] font-medium text-[20px] text-[#45464E] ${
+                  className={`font-[Poppins] font-medium sm:text-[20px] text-[#45464E] ${
                     vlueClassName || ""
                   }`}
                 >

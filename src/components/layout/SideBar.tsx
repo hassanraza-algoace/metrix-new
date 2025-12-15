@@ -36,7 +36,7 @@ const SideBar = () => {
     {
       label: "Dashboard",
       path: RouteDashboard,
-      isSelected: true,
+      isSelected: false,
       counts: 0,
       url: RouteDashboard,
       icon: TbCategoryFilled,
@@ -126,6 +126,7 @@ const SideBar = () => {
                   <NavLink key={item.path} to={item.url}>
                     <SimpleButton
                       content={item.label}
+                      onClick={() => {item.isSelected === true}}
                       icon={<item.icon className="text-[12px]" />}
                       className={
                         activeMenu === item.path
