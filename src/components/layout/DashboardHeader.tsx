@@ -95,7 +95,7 @@ const DashboardHeader = () => {
               alt={userName}
               width="32px"
               height="32px"
-              className="rounded-xl"
+              className="rounded-full"
             />
           </div>
         </div>
