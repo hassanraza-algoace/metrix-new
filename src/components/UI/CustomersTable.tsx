@@ -18,7 +18,7 @@ import {
 import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react";
 
 import { Button } from "./Button";
-import { CheckBox } from "./CheckBox";
+import { CheckBox } from "./checkbox";
 import {
   DropdownMenu,
   DropdownMenuCheckboxItem,
@@ -27,8 +27,8 @@ import {
   DropdownMenuLabel,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from "./Dropdown-menu";
-import { Input } from "./Input";
+} from "./dropdown-menu";
+import { Input } from "./input";
 import {
   Table,
   TableBody,
@@ -36,7 +36,7 @@ import {
   TableHead,
   TableHeader,
   TableRow,
-} from "./Table";
+} from "./table";
 import { NavLink } from "react-router-dom";
 import { RouteDashboardCustomers } from "../../pages/Routes";
 

@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
+import { getAnalytics, type Analytics } from "firebase/analytics";
 
 const firebaseConfig = {
   apiKey: "AIzaSyC-v36nE3ifXgVvY8M5Mfmi2H_U3TLFyKE",
@@ -13,5 +13,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
+
+// Firebase Analytics must run in the browser; guard for server/build time.
+export const analytics: Analytics | null =
+  typeof window !== "undefined" ? getAnalytics(app) : null;
