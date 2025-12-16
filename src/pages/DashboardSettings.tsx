@@ -1,21 +1,59 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { FiUser, FiMail, FiMapPin, FiUpload, FiTrash2 } from "react-icons/fi";
+import { getUserProfile, updateCompleteProfile } from "../../services/userService"; // apna path
 
 const DashboardSettings = () => {
   const [image, setImage] = useState<string>("./images/profile.jpg");
+  const [loading, setLoading] = useState(true);
+  const [updating, setUpdating] = useState(false);
   const [formData, setFormData] = useState({
-    firstName: "Usman",
-    lastName: "Ndako",
-    email: "usmanndako@gmail.com",
-    phoneCountry: "+234",
-    phoneNumber: "08065650633",
-    address: "No. 93 Skyfield Apartments",
-    city: "Yaba",
-    country: "Nigeria",
-    state: "Lagos",
+    firstName: "",
+    lastName: "",
+    email: "",
+    phoneCountry: "+92",
+    phoneNumber: "",
+    address: "",
+    city: "",
+    country: "Pakistan",
+    state: "",
   });
 
   const [activeTab, setActiveTab] = useState("Account");
+  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
+  // Component load hone par user data fetch karo
+  useEffect(() => {
+    fetchUserData();
+  }, []);
+
+  const fetchUserData = async () => {
+    setLoading(true);
+    const result = await getUserProfile();
+    
+    if (result.success && result.data) {
+      const userData = result.data;
+      
+      // Firebase se data ko form mein set karo
+      setFormData({
+        firstName: userData.displayName?.split(" ")[0] || "",
+        lastName: userData.displayName?.split(" ")[1] || "",
+        email: userData.email || "",
+        phoneCountry: "+92",
+        phoneNumber: userData.phoneNumber || "",
+        address: userData.address || "",
+        city: userData.city || "",
+        country: "Pakistan",
+        state: userData.state || "",
+      });
+
+      // Profile photo agar hai to set karo
+      if (userData.photoURL) {
+        setImage(userData.photoURL);
+      }
+    }
+    
+    setLoading(false);
+  };
 
   const handleInputChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -25,10 +63,11 @@ const DashboardSettings = () => {
       [e.target.name]: e.target.value,
     });
   };
-  const fileInputRef = useRef<HTMLInputElement | null>(null);
+
   const handleUploadClick = () => {
     fileInputRef.current?.click();
   };
+
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -43,6 +82,53 @@ const DashboardSettings = () => {
       fileInputRef.current.value = "";
     }
   };
+
+  // Update button click handler
+  const handleUpdate = async () => {
+    setUpdating(true);
+    
+    try {
+      // Display name ko first name + last name se banao
+      const displayName = `${formData.firstName} ${formData.lastName}`.trim();
+      
+      // Phone number ko country code ke saath combine karo
+      const fullPhoneNumber = `${formData.phoneCountry} ${formData.phoneNumber}`;
+      
+      // Firebase mein update karo
+      const result = await updateCompleteProfile(
+        displayName,
+        fullPhoneNumber,
+        formData.address,
+        formData.city,
+        formData.state
+      );
+
+      if (result.success) {
+        // alert("Profile updated successfully! ✅");
+        // Fresh data fetch karo
+        await fetchUserData();
+      } else {
+        alert(`Error: ${result.message}`);
+      }
+    } catch (error) {
+      console.error("Update error:", error);
+      alert("Failed to update profile");
+    } finally {
+      setUpdating(false);
+    }
+  };
+
+  // Loading state
+  if (loading) {
+    return (
+      <div className="min-h-screen rounded-xl bg-white p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+          <p className="mt-4 text-gray-600">Loading profile...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen rounded-xl bg-white p-4 sm:p-6 lg:p-8">
@@ -69,8 +155,12 @@ const DashboardSettings = () => {
           <h1 className="text-2xl sm:text-[20px] font-semibold text-gray-900">
             Account Settings
           </h1>
-          <button className="bg-[#5570F1] text-white px-6 py-2.5 rounded-lg hover:[#5570F1] transition-colors font-medium w-full sm:w-auto">
-            Update
+          <button 
+            onClick={handleUpdate}
+            disabled={updating}
+            className="bg-[#5570F1] text-white px-6 py-2.5 rounded-lg hover:bg-[#4560e1] transition-colors font-medium w-full sm:w-auto disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            {updating ? "Updating..." : "Update"}
           </button>
         </div>
 
@@ -133,9 +223,11 @@ const DashboardSettings = () => {
                   name="email"
                   value={formData.email}
                   onChange={handleInputChange}
-                  className="w-full pl-10 pr-4 py-3 bg-[#EFF1F999] border-0 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
+                  disabled
+                  className="w-full pl-10 pr-4 py-3 bg-gray-100 border-0 rounded-lg outline-none cursor-not-allowed"
                 />
               </div>
+              <p className="text-xs text-gray-500 mt-1">Email cannot be changed</p>
             </div>
 
             {/* Phone Number */}
@@ -157,9 +249,9 @@ const DashboardSettings = () => {
                       onChange={handleInputChange}
                       className="bg-[#EFF1F999] outline-none text-sm appearance-none cursor-pointer"
                     >
+                      <option value="+92">+92</option>
                       <option value="+234">+234</option>
                       <option value="+1">+1</option>
-                      <option value="+92">+92</option>
                       <option value="+44">+44</option>
                     </select>
                   </div>
@@ -169,6 +261,7 @@ const DashboardSettings = () => {
                   name="phoneNumber"
                   value={formData.phoneNumber}
                   onChange={handleInputChange}
+                  placeholder="3001234567"
                   className="flex-1 px-4 w-full py-3 bg-[#EFF1F999] border-0 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
                 />
               </div>
@@ -189,6 +282,7 @@ const DashboardSettings = () => {
                   name="address"
                   value={formData.address}
                   onChange={handleInputChange}
+                  placeholder="House 123, Street 5"
                   className="w-full pl-10 pr-4 py-3 bg-[#EFF1F999] border-0 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
                 />
               </div>
@@ -204,6 +298,7 @@ const DashboardSettings = () => {
                 name="city"
                 value={formData.city}
                 onChange={handleInputChange}
+                placeholder="Karachi"
                 className="w-full px-4 py-3 bg-[#EFF1F999] border-0 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none"
               />
             </div>
@@ -220,6 +315,7 @@ const DashboardSettings = () => {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 bg-[#EFF1F999] border-0 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none appearance-none cursor-pointer"
                 >
+                  <option value="Pakistan">Pakistan</option>
                   <option value="Nigeria">Nigeria</option>
                   <option value="USA">USA</option>
                   <option value="UK">UK</option>
@@ -235,16 +331,18 @@ const DashboardSettings = () => {
                   onChange={handleInputChange}
                   className="w-full px-4 py-3 bg-[#EFF1F999] border-0 rounded-lg focus:ring-2 focus:ring-indigo-500 outline-none appearance-none cursor-pointer"
                 >
-                  <option value="Lagos">Lagos</option>
-                  <option value="Abuja">Abuja</option>
-                  <option value="Kano">Kano</option>
+                  <option value="">Select State</option>
+                  <option value="Sindh">Sindh</option>
+                  <option value="Punjab">Punjab</option>
+                  <option value="KPK">KPK</option>
+                  <option value="Balochistan">Balochistan</option>
                 </select>
               </div>
             </div>
           </div>
 
           {/* Right Column - Profile Picture */}
-          <div className="lg:flex lg:justify-center  lg:items-start">
+          <div className="lg:flex lg:justify-center lg:items-start">
             <div className="relative bg-[#EFF1F999] inline-block">
               {image ? (
                 <img

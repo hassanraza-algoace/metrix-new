@@ -1,5 +1,6 @@
 // authService.ts
-
+import { doc, setDoc } from 'firebase/firestore';
+import { db } from '../firebase/config'; // apna firestore instance
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -87,12 +88,24 @@ export const signup = async (
       email,
       password
     );
-
+    
     // Update user profile with display name
     if (userCredential.user) {
       await updateProfile(userCredential.user, {
         displayName: displayName,
       });
+
+      // Save user data to Firestore
+      const userDoc = {
+        uid: userCredential.user.uid,
+        email: userCredential.user.email,
+        displayName: displayName,
+        photoURL: userCredential.user.photoURL || null,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      };
+
+      await setDoc(doc(db, "users", userCredential.user.uid), userDoc);
 
       // Update store with user data
       const { setUser } = useAuthStore.getState();
@@ -103,14 +116,13 @@ export const signup = async (
         photoURL: userCredential.user.photoURL,
       });
     }
-
+    
     return {
       success: true,
       user: userCredential.user,
       message: "Account created successfully!",
     };
   } catch (error: any) {
-    // Error handling is centralized and uses our utility function
     return {
       success: false,
       error: error.code,
