@@ -1,5 +1,5 @@
 "use client";
-
+import { getAllProducts } from "../../../services/productServices";
 import * as React from "react";
 import type {
   ColumnDef,
@@ -39,539 +39,26 @@ import {
 } from "./table";
 import { NavLink } from "react-router-dom";
 import { RouteDashboardInventory } from "../../pages/Routes";
+import { useState, useEffect } from "react";
+import { Product } from "../../../services/productServices";
 
-export type Purchases = {
-  orderDate: string;
-  orderType: string;
-  unitPrice: string;
-  qty: number;
-  discount: string;
-  orderTotal: string;
-  status: string;
+// Firebase product ko table format mein convert karne ka function
+export const convertFirebaseProductToTableFormat = (product: Product) => {
+  return {
+    id: product.id || "",
+    productName: product.productName || "",
+    category: product.category || "",
+    unitPrice: `₦${product.sellingPrice?.toLocaleString() || "0.00"}`,
+    inStock: product.quantity || 0,
+    discount: product.discountValue ? `₦${product.discountValue}` : "₦0.00",
+    totalValue: `₦${((product.sellingPrice || 0) * (product.quantity || 0)).toLocaleString()}`,
+    action: "Publish",
+    status: product.quantity > 0 ? "Published" : "Out of Stock",
+    productImageUrl: product.imageUrl || "",
+  };
 };
 
-export type Products = {
-  id: string;
-  productName: string;
-  category: string;
-  unitPrice: string;
-  inStock: string | number;
-  discount: string;
-  totalValue: string;
-  action: string;
-  status: string;
-  productImageUrl: string;
-  lastOrder: string;
-  published: string;
-  allTimePrice: string;
-  priceChange: string;
-  allTimeInStock: number;
-  inStockChange: string;
-  totalOrders: number;
-  ordersChange: string;
-  views: number;
-  viewsChange: string;
-  favourite: number;
-  favouriteChange: string;
-  allOrders: number;
-  allOrdersChange: string;
-  pending: number;
-  pendingChange: string;
-  completed: number;
-  completedChange: string;
-  canceled: number;
-  canceledChange: string;
-  returned: number;
-  returnedChange: string;
-  damaged: number;
-  damagedChange: string;
-  purchases: Purchases[];
-};
-
-export const data: Products[] = [
-  {
-    id: "1",
-    productName: "iPhone 13 Pro",
-    category: "Gadgets",
-    unitPrice: "₦1,225,000.00",
-    inStock: 8,
-    discount: "₦0.00",
-    totalValue: "₦50,000.00",
-    action: "Publish",
-    status: "Published",
-    productImageUrl:
-      "https://img-prd-pim.poorvika.com/product/apple-iphone-13-pro-alpine-green-1TBgb-front-side-view.png",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-  {
-    id: "2",
-    productName: "iPhone 12 Pro",
-    category: "Gadgets",
-    unitPrice: "₦725,000.00",
-    inStock: 12,
-    discount: "₦0.00",
-    totalValue: "₦50,000.00",
-    action: "Publish",
-    status: "Published",
-    productImageUrl:
-      "https://i.ebayimg.com/images/g/eacAAOSwR-li6O-m/s-l640.jpg",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-  {
-    id: "3",
-    productName: "Polo T-Shirt",
-    category: "Fashion",
-    unitPrice: "₦125,000.00",
-    inStock: 120,
-    discount: "₦0.00",
-    totalValue: "₦50,000.00",
-    action: "Unpublish",
-    status: "Unpublished",
-    productImageUrl:
-      "https://avatars.mds.yandex.net/get-mpic/12280826/2a00000195e38318b76f8ff8802815b2a9fe/orig",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-  {
-    id: "4",
-    productName: "Polo T-Shirt",
-    category: "Fashion",
-    unitPrice: "₦125,000.00",
-    inStock: "Out of Stock",
-    discount: "₦0.00",
-    totalValue: "₦0.00",
-    action: "Unpublish",
-    status: "Unpublished",
-    productImageUrl:
-      "https://i.ebayimg.com/images/g/5HEAAOSwn6hnC8lk/s-l500.jpg",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-  {
-    id: "5",
-    productName: "Polo T-Shirt",
-    category: "Fashion",
-    unitPrice: "₦125,000.00",
-    inStock: "Out of Stock",
-    discount: "₦0.00",
-    totalValue: "₦0.00",
-    action: "Unpublish",
-    status: "Unpublished",
-    productImageUrl:
-      "https://img.joomcdn.net/29c7ffc83741e9a079c2b839c40abade1ef26225_original.jpeg",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-  {
-    id: "6",
-    productName: "iPhone 13 Pro",
-    category: "Gadgets",
-    unitPrice: "₦1,225,000.00",
-    inStock: 8,
-    discount: "₦0.00",
-    totalValue: "₦50,000.00",
-    action: "Publish",
-    status: "Published",
-    productImageUrl:
-      "https://i.moyo.ua/img/products/6385/82_4000.jpg?1742556685",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-  {
-    id: "7",
-    productName: "iPhone 12 Pro",
-    category: "Gadgets",
-    unitPrice: "₦725,000.00",
-    inStock: 12,
-    discount: "₦0.00",
-    totalValue: "₦50,000.00",
-    action: "Publish",
-    status: "Published",
-    productImageUrl:
-      "https://i.ebayimg.com/images/g/e1oAAOSwOzRjLBOt/s-l640.jpg",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-  {
-    id: "8",
-    productName: "iPhone 13 Pro",
-    category: "Gadgets",
-    unitPrice: "₦1,225,000.00",
-    inStock: 8,
-    discount: "₦0.00",
-    totalValue: "₦50,000.00",
-    action: "Publish",
-    status: "Published",
-    productImageUrl:
-      "https://avatars.mds.yandex.net/get-marketpic/1847688/pic96d006648fb503611985e24f7b6152ab/orig",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-  {
-    id: "9",
-    productName: "iPhone 12 Pro",
-    category: "Gadgets",
-    unitPrice: "₦725,000.00",
-    inStock: 12,
-    discount: "₦0.00",
-    totalValue: "₦50,000.00",
-    action: "Publish",
-    status: "Published",
-    productImageUrl:
-      "https://i.ebayimg.com/images/g/a4QAAOSwnGljcQWv/s-l960.jpg",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-  {
-    id: "10",
-    productName: "Polo T-Shirt",
-    category: "Fashion",
-    unitPrice: "₦125,000.00",
-    inStock: 120,
-    discount: "₦0.00",
-    totalValue: "₦50,000.00",
-    action: "Unpublish",
-    status: "Unpublished",
-    productImageUrl:
-      "https://i5.walmartimages.com/asr/17da7bc4-65a4-4139-b63c-93ccfff463d1.8828fed73be308bdade072722e6954ac.jpeg?odnHeight=768&odnWidth=768&odnBg=FFFFFFhttps://contents.mediadecathlon.com/p2080002/k$3cc4239c8f88d49fc45b0c153d983ee5/sq/polo-shirt.jpg",
-    lastOrder: "12 Sept 2022",
-    published: "Published",
-    allTimePrice: "₦25,000.00",
-    priceChange: "+0.00%",
-    allTimeInStock: 20,
-    inStockChange: "+0.00%",
-    totalOrders: 1200,
-    ordersChange: "+0.00%",
-    views: 23,
-    viewsChange: "+0.00%",
-    favourite: 50,
-    favouriteChange: "+0.00%",
-    allOrders: 1,
-    allOrdersChange: "+0.00%",
-    pending: 0,
-    pendingChange: "+0.00%",
-    completed: 1,
-    completedChange: "+0.00%",
-    canceled: 0,
-    canceledChange: "-20%",
-    returned: 0,
-    returnedChange: "+0.00%",
-    damaged: 0,
-    damagedChange: "+0.00%",
-    purchases: [
-      {
-        orderDate: "12 Aug 2022 - 12:25 am",
-        orderType: "Home Delivery",
-        unitPrice: "₦25,000.00",
-        qty: 2,
-        discount: "₦0.00",
-        orderTotal: "₦50,000.00",
-        status: "Completed",
-      },
-    ],
-  },
-];
-
-export const columns: ColumnDef<Products>[] = [
+export const columns: ColumnDef<any>[] = [
   {
     id: "select",
     header: ({ table }) => (
@@ -597,7 +84,7 @@ export const columns: ColumnDef<Products>[] = [
     enableHiding: false,
   },
   {
-    accessorKey: "productName", // yeh rehne do
+    accessorKey: "productName",
     header: ({ column }) => (
       <Button
         variant="ghost"
@@ -607,16 +94,17 @@ export const columns: ColumnDef<Products>[] = [
         <ArrowUpDown className="ml-2 h-4 w-4" />
       </Button>
     ),
-
     cell: ({ row }) => {
-      const item = row.original; // is me full row ka data hota hai
-
+      const item = row.original;
       return (
         <div className="flex items-center gap-3 capitalize">
           <img
-            src={item.productImageUrl}
+            src={item.productImageUrl || "https://via.placeholder.com/40"}
             alt={item.productName}
             className="w-10 h-10 rounded-md object-cover"
+            onError={(e) => {
+              e.currentTarget.src = "https://via.placeholder.com/40";
+            }}
           />
           <span>{item.productName}</span>
         </div>
@@ -690,7 +178,6 @@ export const columns: ColumnDef<Products>[] = [
     enableHiding: false,
     cell: ({ row }) => {
       const payment = row.original;
-
       return (
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
@@ -708,13 +195,10 @@ export const columns: ColumnDef<Products>[] = [
             </DropdownMenuItem>
             <DropdownMenuSeparator />
             <DropdownMenuItem>
-              {
-                <NavLink to={`${RouteDashboardInventory}/${payment.id}`}>
-                  View Inventory Detailes
-                </NavLink>
-              }
+              <NavLink to={`${RouteDashboardInventory}/${payment.id}`}>
+                View Inventory Details
+              </NavLink>
             </DropdownMenuItem>
-            {/* <DropdownMenuItem>View payment details</DropdownMenuItem> */}
           </DropdownMenuContent>
         </DropdownMenu>
       );
@@ -726,15 +210,11 @@ export const columns: ColumnDef<Products>[] = [
     cell: ({ row }) => (
       <div
         className={`capitalize rounded-xl text-center p-0.5 ${
-          row.getValue("status") === "Completed"
+          row.getValue("status") === "Published"
             ? "bg-[#32936F29] text-[#519C66]"
-            : row.getValue("status") === "In-Progress"
-            ? "bg-[#5570F129] text-[#5570F1]"
-            : row.getValue("status") === "failed"
+            : row.getValue("status") === "Out of Stock"
             ? "bg-red-200 text-red-500"
-            : row.getValue("status") === "Pending"
-            ? "bg-[#FFF2E2] text-[#1C1D22]"
-            : ""
+            : "bg-[#FFF2E2] text-[#1C1D22]"
         }`}
       >
         {row.getValue("status")}
@@ -744,16 +224,33 @@ export const columns: ColumnDef<Products>[] = [
 ];
 
 function InventoryTable() {
-  const [sorting, setSorting] = React.useState<SortingState>([]);
-  const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>(
-    []
-  );
-  const [columnVisibility, setColumnVisibility] =
-    React.useState<VisibilityState>({});
-  const [rowSelection, setRowSelection] = React.useState({});
+  const [products, setProducts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      try {
+        const data = await getAllProducts();
+        // Firebase products ko table format mein convert karo
+        const formattedProducts = data.map(convertFirebaseProductToTableFormat);
+        setProducts(formattedProducts);
+      } catch (error) {
+        console.error("Failed to fetch products:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchProducts();
+  }, []);
+
+  const [sorting, setSorting] = useState<SortingState>([]);
+  const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
+  const [rowSelection, setRowSelection] = useState({});
 
   const table = useReactTable({
-    data,
+    data: products, // Firebase data use ho raha hai
     columns,
     onSortingChange: setSorting,
     onColumnFiltersChange: setColumnFilters,
@@ -771,8 +268,24 @@ function InventoryTable() {
     },
   });
 
+  if (loading) {
+    return (
+      <div className="w-full bg-white p-8 rounded-xl flex justify-center items-center">
+        <p className="text-gray-500">Loading products...</p>
+      </div>
+    );
+  }
+
+  if (products.length === 0) {
+    return (
+      <div className="w-full bg-white p-8 rounded-xl flex justify-center items-center">
+        <p className="text-gray-500">No products found. Add some products!</p>
+      </div>
+    );
+  }
+
   return (
-    <div className="lg:w-full! lg:overflow-auto! w-full bg-white p-4 rounded-xl">
+    <div className="lg:w-full lg:overflow-auto w-full bg-white p-4 rounded-xl">
       <div className="flex items-center py-4">
         <Input
           placeholder="Filter Product Name..."

@@ -63,7 +63,7 @@ const DashboardOrders = () => {
         />
       </div>
       <div className="h-full">
-        <RecentOrder classes={"hidden"} mainClass={"h-[60vh]"}/>
+        <RecentOrder classes={"hidden"} mainClass={"min-h-[60vh]"}/>
       </div>
     </div>
   );

@@ -16,7 +16,7 @@ const DashboardLayout = () => {
 
         <div className="flex-1 w-[80%]">
           <DashboardHeader />
-          <div className="bg-[#EEF0FA] p-5 min-h-screen w-full">
+          <div className="bg-[#EEF0FA] p-5 w-full">
             <Outlet />
           </div>
         </div>

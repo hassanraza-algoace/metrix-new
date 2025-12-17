@@ -2,17 +2,23 @@
 
 import { GoPlus } from "react-icons/go";
 import SimpleButton from "./SimpleButton";
+import { NavLink } from "react-router-dom";
+import { RouteDashboardInventoryAdd } from "../../pages/Routes";
 
 interface RecentOrderProps {
   classes?: string;
   mainClass?: string;
 }
 
-export default function RecentOrder({classes , mainClass}: RecentOrderProps) {
+export default function RecentOrder({ classes, mainClass }: RecentOrderProps) {
   return (
-    <div className={`bg-white mx-auto p-4 rounded-lg min-h-full flex flex-col ${mainClass}`}>
+    <div
+      className={`bg-white mx-auto p-4 rounded-lg min-h-full flex flex-col ${mainClass}`}
+    >
       {/* Header */}
-      <h2 className={`${classes} text-sm font-medium text-gray-600 mb-6`}>Recent Orders</h2>
+      <h2 className={`${classes} text-sm font-medium text-gray-600 mb-6`}>
+        Recent Orders
+      </h2>
 
       {/* Empty State Content */}
       <div className="flex flex-col items-center justify-center grow text-center">
@@ -39,7 +45,15 @@ export default function RecentOrder({classes , mainClass}: RecentOrderProps) {
         </p>
 
         {/* Button */}
-        <SimpleButton className={"text-[14px] py-1 px-2 gap-1 bg-[#5570F1] text-white! flex items-center rounded-lg"} content={"New Product"} icon={<GoPlus />} />
+        <NavLink to={RouteDashboardInventoryAdd}>
+          <SimpleButton
+            className={
+              "text-[14px] py-1 px-2 gap-1 bg-[#5570F1] text-white! flex items-center rounded-lg"
+            }
+            content={"New Product"}
+            icon={<GoPlus />}
+          />
+        </NavLink>
       </div>
     </div>
   );

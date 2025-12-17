@@ -26,7 +26,7 @@ const FunButton: React.FC<ButtonProps> = ({
 
   return (
     <button
-      className="bg-[#5570F1] text-[20px] font-[Inter] font-normal px-4 py-[17px] rounded-xl text-white w-[180px]"
+      className="bg-[#5570F1] text-[18px] font-[Inter] font-normal px-14 py-1.5 rounded-xl text-white"
       onClick={handleClick}
       type={type}
       disabled={disabled}

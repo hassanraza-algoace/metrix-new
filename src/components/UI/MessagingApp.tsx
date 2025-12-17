@@ -184,7 +184,7 @@ const MessagingApp = () => {
           />
         </div>
       </div>
-      <div className="flex min-h-screen gap-3">
+      <div className="flex max-h-[420px] gap-3">
         {/* Contacts Sidebar */}
         <div
           className={`${

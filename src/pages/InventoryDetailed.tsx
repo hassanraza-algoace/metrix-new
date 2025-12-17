@@ -1,20 +1,46 @@
 import { useParams } from "react-router-dom";
-import { data } from "../components/UI/InventoryTable";
+import { useState, useEffect } from "react";
+import { Product } from "../../services/productServices";
 import Cards from "../components/UI/Cards";
+import { doc, getDoc } from "firebase/firestore";
+import { db } from "../../firebase/config";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { HiOutlineChartPie } from "react-icons/hi";
 import { BsHandbag } from "react-icons/bs";
 import { IoEyeOutline } from "react-icons/io5";
 
 export default function InventoryDetailed() {
-  const { id } = useParams();
-  const product = data.find((c) => c.id === id);
+  const { id } = useParams<{ id: string }>();
+  const [product, setProduct] = useState<Product | null>(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchProduct = async () => {
+      if (!id) return;
+      try {
+        const docRef = doc(db, "products", id);
+        const docSnap = await getDoc(docRef);
+        if (docSnap.exists()) {
+          setProduct({
+            id: docSnap.id,
+            ...(docSnap.data() as Omit<Product, "id">),
+          });
+        }
+      } catch (error) {
+        console.error("Error fetching product:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
 
+    fetchProduct();
+  }, [id]);
+  if (loading) return <p>Loading product details...</p>;
+  if (!product) return <p>Product not found.</p>;
   return (
     <div className="w-full min-h-screen">
       <div>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-          <h1 className="text-xl font-semibold">{product?.productName}</h1>
+          <h1 className="text-xl font-semibold">{product.productName}</h1>
           <div className="flex flex-wrap md:flex-nowrap gap-3">
             <button className="px-4 py-2 rounded-xl w-full md:w-fit text-white bg-[#1C1D22]">
               Edit product
@@ -29,16 +55,20 @@ export default function InventoryDetailed() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-6 gap-4 mt-6">
           <div className=" p-1 bg-white border rounded-2xl shadow-sm xl:col-start-1 flex justify-center items-center">
             <img
-              src={product?.productImageUrl}
-              alt={product?.productName}
-              title={product?.productName}
+              src={product.imageUrl}
+              alt={product.productName}
+              title={product.productName}
               width={100}
             />
           </div>
           <div className=" bg-white border rounded-2xl content-center shadow-sm xl:col-span-2">
             <Cards
               icons={FaRegCircleUser}
-              lastOrder={product?.lastOrder}
+              lastOrder={
+                product.updatedAt
+                  ? product.updatedAt.toDate().toLocaleDateString()
+                  : "N/A"
+              }
               lastOrderClassName="block!"
               //   customerName={product?.productName}
               iconClassName="hidden"
@@ -47,11 +77,11 @@ export default function InventoryDetailed() {
               filterTextClassName="text-[#519C66]!"
               downIconClassName="hidden"
               className="p-4 rounded-lg w-full"
-              divClassName={"w-fit"}
+              divClassName={"w-fit lg:w-[50%]"}
               vlueClassName="text-[14px]!"
               content={[
-                { id: 1, title: "Price", description: product?.unitPrice },
-                { id: 2, title: "In-Stock", description: product?.inStock },
+                { id: 1, title: "Price", description: product.sellingPrice },
+                { id: 2, title: "In-Stock", description: product.quantity },
               ]}
             />
           </div>
@@ -70,7 +100,7 @@ export default function InventoryDetailed() {
                 {
                   id: 1,
                   title: "Total Orders",
-                  description: product?.totalValue,
+                  description: 4,
                 },
               ]}
             />
@@ -89,12 +119,12 @@ export default function InventoryDetailed() {
                 {
                   id: 1,
                   title: "Views",
-                  description: product?.views,
+                  description: 200,
                 },
                 {
                   id: 2,
                   title: "Favourite",
-                  description: product?.favourite,
+                  description: 100,
                 },
               ]}
             />
@@ -113,17 +143,17 @@ export default function InventoryDetailed() {
                 {
                   id: 1,
                   title: "All Orders",
-                  description: product?.allOrders,
+                  description: 3,
                 },
                 {
                   id: 2,
                   title: "Pending",
-                  description: product?.pending,
+                  description: 1,
                 },
                 {
                   id: 3,
                   title: "Completed",
-                  description: product?.completed,
+                  description: 2,
                 },
               ]}
             />
@@ -141,17 +171,17 @@ export default function InventoryDetailed() {
                 {
                   id: 1,
                   title: "Canceled",
-                  description: product?.canceled,
+                  description: 0,
                 },
                 {
                   id: 2,
                   title: "Returned",
-                  description: product?.returned,
+                  description: 0,
                 },
                 {
                   id: 3,
                   title: "Damaged",
-                  description: product?.damaged,
+                  description: 0,
                 },
               ]}
             />
@@ -177,39 +207,33 @@ export default function InventoryDetailed() {
               </thead>
 
               <tbody>
-                {product?.purchases?.map((items, i) => (
-                  <tr key={i} className="border-b text-sm">
-                    <td className="py-3">{items.orderDate}</td>
-                    <td>{items.orderType}</td>
-                    <td>{items.unitPrice}</td>
-                    <td>{items.qty}</td>
-                    <td>
-                      <span className="px-3 py-1 bg-gray-200 rounded-xl text-xs">
-                        {items.discount}
-                      </span>
-                    </td>
-                    <td>
-                      <span
-                        className={`px-3 py-1 bg-gray-200 rounded-xl text-xs`}
-                      >
-                        {items.orderTotal}
-                      </span>
-                    </td>
-                    <td>
-                      <span
-                        className={`px-3 py-1 rounded-xl text-xs text-white ${
-                          items.status === "Completed"
-                            ? "bg-green-500"
-                            : items.status === "In-Progress"
-                            ? "bg-blue-500"
-                            : "bg-yellow-500"
-                        }`}
-                      >
-                        {items.status}
-                      </span>
-                    </td>
-                  </tr>
-                ))}
+                <tr className="border-b text-sm">
+                  <td className="py-3">
+                    12/12/2025
+                  </td>
+                  <td>online</td>
+                  <td>2000</td>
+                  <td>2</td>
+                  <td>
+                    <span className="px-3 py-1 bg-gray-200 rounded-xl text-xs">
+                      0
+                    </span>
+                  </td>
+                  <td>
+                    <span
+                      className={`px-3 py-1 bg-gray-200 rounded-xl text-xs`}
+                    >
+                      12
+                    </span>
+                  </td>
+                  <td>
+                    <span
+                      className={`px-3 py-1 rounded-xl text-xs text-[#519C66] bg-[#32936F1F]`}
+                    >
+                      Compeleted
+                    </span>
+                  </td>
+                </tr>
               </tbody>
             </table>
           </div>
