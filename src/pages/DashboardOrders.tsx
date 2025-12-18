@@ -4,21 +4,33 @@ import Cards from "../components/UI/Cards";
 import { BsHandbag } from "react-icons/bs";
 import { FiShoppingCart } from "react-icons/fi";
 import RecentOrder from "../components/UI/RecentOrder";
-
+import { customerdata } from "../components/UI/RecentOrder";
 const DashboardOrders = () => {
   const cardData1 = [
-    { id: 1, title: "All Orders", value: 0 },
-    { id: 2, title: "Pending", value: 0 },
-    { id: 3, title: "Completed", value: 0 },
+    { id: 1, title: "All Orders", description: customerdata.length },
+    {
+      id: 2,
+      title: "Pending",
+      description: customerdata.filter(
+        (order) => order.actionStatus === "Pending"
+      ).length,
+    },
+    {
+      id: 3,
+      title: "Completed",
+      description: customerdata.filter(
+        (order) => order.actionStatus === "Completed"
+      ).length,
+    },
   ];
   const cardData2 = [
-    { id: 1, title: "Canceled", value: 0 },
-    { id: 2, title: "Returned", value: 0 },
-    { id: 3, title: "Damaged", value: 0 },
+    { id: 1, title: "Canceled", description: 30, value: "-20%" },
+    { id: 2, title: "Returned", description: 20 },
+    { id: 3, title: "Damaged", description: 5 },
   ];
   const cardData3 = [
-    { id: 1, title: "Abandoned Cart", value: 0 },
-    { id: 2, title: "Customers", value: 0 },
+    { id: 1, title: "Abandoned Cart",description: "20%", value: "+0.00%" },
+    { id: 2, title: "Customers", description: 30 },
   ];
   return (
     <div className="flex flex-col gap-2">
@@ -32,7 +44,9 @@ const DashboardOrders = () => {
           <SimpleButton
             content={"Create a New Order"}
             icon={<GoPlus />}
-            className={"text-[14px] py-1 px-2 gap-1 bg-[#5570F1] text-white! flex items-center rounded-lg"}
+            className={
+              "text-[14px] py-1 px-2 gap-1 bg-[#5570F1] text-white! flex items-center rounded-lg"
+            }
           />
         </div>
       </div>
@@ -62,9 +76,7 @@ const DashboardOrders = () => {
           content={cardData3}
         />
       </div>
-      <div className="h-full">
-        <RecentOrder classes={"hidden"} mainClass={"min-h-[60vh]"}/>
-      </div>
+      <RecentOrder classes={"hidden"} />
     </div>
   );
 };

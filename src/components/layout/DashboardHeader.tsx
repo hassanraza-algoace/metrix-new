@@ -90,13 +90,28 @@ const DashboardHeader = () => {
             <PiBellSimpleFill className="text-[#5570F1] text-[18px] cursor-pointer" />
           </div>
           <div onClick={handleProfile}>
-            <img
+            {profilePicture ? <img
               src={profilePicture}
               alt={userName}
               width="32px"
               height="32px"
               className="rounded-full"
-            />
+            /> : 
+            <img
+              src="/images/user.webp"
+              alt={userName}
+              width="32px"
+              height="32px"
+              className="rounded-full"
+            /> 
+            }
+            {/* <img
+              src={profilePicture}
+              alt={userName}
+              width="32px"
+              height="32px"
+              className="rounded-full"
+            /> */}
           </div>
         </div>
       </div>

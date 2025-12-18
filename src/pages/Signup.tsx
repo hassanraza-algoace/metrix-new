@@ -8,6 +8,7 @@ import PasswordInput from "../components/UI/PasswordInput";
 import { useState, FormEvent } from "react";
 import { signup } from "../../services/authService";
 import { RouteDashboard } from "./Routes";
+import { FiLoader } from "react-icons/fi";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -93,9 +94,16 @@ const Signup = () => {
                 </span>
               </p>
             </div>
-            <div className="flex justify-center mt-5">
+            <div className={`flex justify-center mt-5 ${loading === true ? "opacity-50" : "opacity-100"}`}>
               <FunButton
-                content={loading ? "Creating Account..." : "Signup"}
+                content={loading ? (
+                    <span className="flex items-center gap-2">
+                      <FiLoader className="animate-spin" />
+                      Creating Account...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">Signup</span>
+                  )}
                 type={"submit"}
                 disabled={loading}
               />

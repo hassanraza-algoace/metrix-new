@@ -3,7 +3,7 @@ import { FiUser, FiMail, FiMapPin, FiUpload, FiTrash2 } from "react-icons/fi";
 import { getUserProfile, updateCompleteProfile } from "../../services/userService"; // apna path
 
 const DashboardSettings = () => {
-  const [image, setImage] = useState<string>("./images/profile.jpg");
+  const [image, setImage] = useState<string>("/images/user.webp");
   const [loading, setLoading] = useState(true);
   const [updating, setUpdating] = useState(false);
   const [formData, setFormData] = useState({

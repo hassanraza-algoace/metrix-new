@@ -1,4 +1,5 @@
 import { FaAngleDown } from "react-icons/fa";
+import { ChartPieDonut } from "./ChartPieDonut";
 
 const CardTwo = () => {
   return (
@@ -36,8 +37,8 @@ const CardTwo = () => {
           </li>
         </ul>
       </div>
-      <div className="flex justify-center">
-        <div className="w-[205px] h-[205px] border-[#EEF0FA] border-50 rounded-full" />
+      <div className="-my-2.5">
+          <ChartPieDonut />
       </div>
     </div>
   );

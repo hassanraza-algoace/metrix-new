@@ -14,10 +14,10 @@ const DashboardLayout = () => {
           <SideBar />
         </div>
 
-        <div className="flex-1 w-[80%]">
+        <div className="flex-1 w-[80%] bg-[#EEF0FA]">
           <DashboardHeader />
           <div className="bg-[#EEF0FA] p-5 w-full">
-            <Outlet />
+              <Outlet />
           </div>
         </div>
       </div>

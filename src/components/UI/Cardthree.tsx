@@ -1,5 +1,6 @@
 import { FaAngleDown } from "react-icons/fa";
-import Graph from "./Graph";
+// import Graph from "./Graph";
+import { Mychart } from "./MyChart";
 
 const Cardthree = () => {
   return (
@@ -32,7 +33,7 @@ const Cardthree = () => {
           </select>
         </div>
           </div>
-          <Graph/>
+          <Mychart/>
     </div>
   );
 };

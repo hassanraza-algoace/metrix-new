@@ -1,5 +1,5 @@
 import { PiEnvelopeSimpleLight, PiLockLight } from "react-icons/pi";
-import Button from "../components/UI/FunButton";
+import FunButton from "../components/UI/FunButton";
 import { NavLink, useNavigate } from "react-router-dom";
 import SimpleInput from "../components/UI/SimpleInput";
 import PasswordInput from "../components/UI/PasswordInput";
@@ -7,6 +7,7 @@ import { IoIosEyeOff } from "react-icons/io";
 import { useState, FormEvent } from "react";
 import { login } from "../../services/authService";
 import { RouteDashboard } from "./Routes";
+import { FiLoader } from "react-icons/fi";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -24,6 +25,16 @@ const Login = () => {
 
     if (result.success) {
       navigate(RouteDashboard);
+      return (
+        <>
+          <div className="min-h-screen rounded-xl bg-white p-4 sm:p-6 lg:p-8 flex items-center justify-center">
+            <div className="text-center">
+              <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-indigo-600 mx-auto"></div>
+              <p className="mt-4 text-gray-600">Loading profile...</p>
+            </div>
+          </div>
+        </>
+      );
     } else {
       setError(result.message);
     }
@@ -89,9 +100,22 @@ const Login = () => {
                 </span>
               </p>
             </div>
-            <div className="flex justify-center mt-5">
-              <Button
-                content={loading ? "Logging in..." : "Login"}
+            <div
+              className={`flex justify-center mt-5 ${
+                loading === true ? "opacity-50" : "opacity-100"
+              }`}
+            >
+              <FunButton
+                content={
+                  loading ? (
+                    <span className="flex items-center gap-2">
+                      <FiLoader className="animate-spin" />
+                      Logging in...
+                    </span>
+                  ) : (
+                    <span className="flex items-center gap-2">Login</span>
+                  )
+                }
                 type={"submit"}
                 disabled={loading}
               />

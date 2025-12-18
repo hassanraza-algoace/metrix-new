@@ -5,7 +5,6 @@ import { BsHandbag } from "react-icons/bs";
 import { LuFolderMinus, LuUsersRound } from "react-icons/lu";
 import {
   IoChatbubbleEllipsesOutline,
-  IoLogOut,
   IoSettingsOutline,
 } from "react-icons/io5";
 import React from "react";
@@ -21,7 +20,7 @@ import {
 import { FiGift, FiHeadphones } from "react-icons/fi";
 import { FaAngleRight } from "react-icons/fa";
 import { useMenuStore } from "../../store/useMenuStore";
-import { logout } from "../../../services/authService";
+import { LogoutModal } from "../UI/LogoutModal";
 
 type NavBarItem = {
   label: string;
@@ -121,7 +120,7 @@ const SideBar = () => {
       </div>
       <div className="mt-[50px] flex flex-col justify-between flex-[100%]">
         <div>
-          <ul className="flex flex-col gap-3">
+          <ul className="flex items-center lg:items-start flex-col gap-3">
             {initialNavBarItems.map((item) => {
               return (
                 <li key={item.path}>
@@ -145,7 +144,7 @@ const SideBar = () => {
             })}
           </ul>
         </div>
-        <div>
+        <div className="items-center lg:items-start flex flex-col">
           <div>
             <SimpleButton
               content={"Contact Support"}
@@ -168,12 +167,13 @@ const SideBar = () => {
             />
           </div>
           <div>
-            <SimpleButton
+            {/* <SimpleButton
               content={"Logout"}
               icon={<IoLogOut className="text-[12px]" />}
               className={`${btnclasses} text-[#CC5F5F]`}
               onClick={() => logout()}
-            />
+            /> */}
+            <LogoutModal />
           </div>
         </div>
       </div>

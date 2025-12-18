@@ -425,7 +425,7 @@ export const columns: ColumnDef<Payment>[] = [
     header: "Status",
     cell: ({ row }) => (
       <div
-        className={`capitalize rounded-xl text-center p-0.5 ${
+        className={`capitalize rounded-xl text-center px-2 p-0.5 ${
           row.getValue("status") === "Completed"
             ? "bg-[#32936F29] text-[#519C66]"
             : row.getValue("status") === "In-Progress"
