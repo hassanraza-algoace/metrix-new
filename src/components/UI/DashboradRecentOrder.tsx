@@ -102,20 +102,21 @@ export default function DashboardRecentOrder({
         products.map((product) => (
           <div
             key={product.id}
-            className="flex gap-1 items-center py-2  border-b mt-1 justify-between"
+            className="flex flex-wrap lg:flex-nowrap gap-1 items-center py-2 border-b mt-1 justify-between"
           >
-            <div className="w-[15%] border rounded-[10px] p-2 overflow-hidden">
+            <div className="lg:w-[15%] w-full lg:border lg:rounded-[10px] lg:p-2 overflow-hidden">
               <img
                 src={product.imageUrl}
+                className="border rounded-[10px] p-2 lg:border-none lg:rounded-none lg:p-0"
                 alt={product.productName}
                 width="80px"
               />
             </div>
-            <div className="w-[60%]">
+            <div className="lg:w-[60%]">
               <p className="capitalize">{product.productName}</p>
               <p className="text-[12px]">₦{product.sellingPrice} x 1</p>
             </div>
-            <div className="w-[25%]">
+            <div className="lg:w-[25%]">
               <p className="text-[12px] text-center">{product.dateAdded}</p>
               <p className="text-[12px] bg-[#32936F1F] text-[#519C66] text-center px-1 py-0.5 rounded-xl">Completed</p>
             </div>
