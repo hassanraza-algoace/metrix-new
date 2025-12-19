@@ -193,9 +193,9 @@ export default function RecentOrder({ classes, mainClass }: RecentOrderProps) {
         <div
           className={`${
             resfilter === true
-              ? "flex! flex-col absolute bg-white p-1 border rounded top-10 right-0 z-50"
+              ? "flex! flex-col max-h-[120px] overflow-x-hidden overflow-y-auto absolute bg-white p-2 lg:p-1 border rounded top-10 right-0 z-50"
               : "hidden"
-          } hidden lg:flex gap-2`}
+          } hidden lg:flex  gap-2 lg:w-auto w-[200px]`}
         >
           <div className="flex gap-2 px-1 rounded-sm items-center border border-[#CFD3D4]">
             <CiSearch size={20} className="text-[#53545C]" />
@@ -213,7 +213,7 @@ export default function RecentOrder({ classes, mainClass }: RecentOrderProps) {
             />
           </div>
           <div
-            className="flex gap-1 px-1 rounded-sm items-center border cursor-pointer border-[#53545C]"
+            className="hidden lg:flex gap-1 px-1 rounded-sm items-center border cursor-pointer border-[#53545C]"
             onClick={handleFilterbtn}
           >
             <CiFilter size={12} className="text-[#53545C]" />
@@ -222,7 +222,7 @@ export default function RecentOrder({ classes, mainClass }: RecentOrderProps) {
           <div
             className={`${
               filterBox ? "lg:block" : "lg:hidden"
-            } lg:absolute top-10 shadow-xl border p-3 rounded-2xl right-0 w-[300px]! min-h-[200px]! bg-white z-1`}
+            } lg:absolute top-10 lg:shadow-xl lg:border lg:p-3 lg:rounded-2xl right-0 max-w-[300px]! min-h-[200px]! bg-white z-1`}
           >
             <div className="flex flex-col gap-3">
               <h3 className="font-medium font-[Inter] text-[#1C1D22] text-sm">
