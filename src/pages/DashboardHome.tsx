@@ -6,8 +6,6 @@ import CardTwo from "../components/UI/CardTwo";
 import { FiShoppingCart } from "react-icons/fi";
 import Cardthree from "../components/UI/Cardthree";
 import DashboardRecentOrder from "../components/UI/DashboradRecentOrder";
-import Loader from "../components/Loader";
-import { useEffect, useState } from "react";
 
 const DashboardHome = () => {
   const cardData1 = [
@@ -31,24 +29,9 @@ const DashboardHome = () => {
     { id: 1, title: "Abandoned Cart", description: "20%", value: "+0.00%" },
     { id: 2, title: "Customers", description: 30 },
   ];
-  const [loading, setLoading] = useState(false);
 
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setLoading(false);
-    }, 1000); // simulate 1 second loading
-
-    return () => clearTimeout(timer);
-  }, []);
 
   return (
-    <>
-      {loading ? (
-        <div className="flex justify-center py-4">
-          <Loader height="h-5" width="w-5" />
-        </div>
-      ) : (
         <div className="flex flex-col max-w-full gap-5">
           <div className="flex justify-between flex-wrap gap-1.5">
             <Cards
@@ -116,8 +99,6 @@ const DashboardHome = () => {
             </div>
           </div>
         </div>
-      )}
-    </>
   );
 };
 

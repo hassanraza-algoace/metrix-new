@@ -28,11 +28,11 @@ const chartData = [
 
 const chartConfig = {
   desktop: {
-    label: "Desktop",
+    label: "Clients",
     color: "var(--chart-1)",
   },
   mobile: {
-    label: "Mobile",
+    label: "Orders",
     color: "var(--chart-2)",
   },
 } satisfies ChartConfig
@@ -40,10 +40,6 @@ const chartConfig = {
 export function Mychart() {
   return (
     <Card>
-      {/* <CardHeader>
-        <CardTitle>Bar Chart - Stacked + Legend</CardTitle>
-        <CardDescription>January - June 2024</CardDescription>
-      </CardHeader> */}
       <CardContent>
         <ChartContainer config={chartConfig}>
           <BarChart accessibilityLayer data={chartData}>

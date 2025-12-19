@@ -6,7 +6,7 @@ import { NavLink } from "react-router-dom";
 import { RouteDashboardInventoryAdd } from "../../pages/Routes";
 import { CiFilter, CiSearch } from "react-icons/ci";
 import { useState } from "react";
-import { BsThreeDotsVertical } from "react-icons/bs";
+import { IoFilter } from "react-icons/io5";
 
 interface RecentOrderProps {
   classes?: string;
@@ -188,7 +188,7 @@ export default function RecentOrder({ classes, mainClass }: RecentOrderProps) {
           Customer Orders
         </h2>
         <div className="block lg:hidden">
-          <BsThreeDotsVertical onClick={handleResponsiveBtn} />
+          <IoFilter onClick={handleResponsiveBtn} />
         </div>
         <div
           className={`${
@@ -406,7 +406,7 @@ export default function RecentOrder({ classes, mainClass }: RecentOrderProps) {
           </NavLink>
         </div>
       ) : (
-        <div className="overflow-x-auto w-full max-h-[230px]">
+        <div className="overflow-x-auto w-full max-h-[190px]">
           <table className="w-full text-left min-w-[800px]">
             <thead className="sticky top-0 bg-white">
               <tr className="text-gray-500 text-sm border-b">

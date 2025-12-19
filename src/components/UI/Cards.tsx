@@ -1,5 +1,6 @@
 import type { IconType } from "react-icons";
 import { FaAngleDown } from "react-icons/fa";
+import CountUp from "./CountUp";
 
 interface CardContentItem {
   id: number;
@@ -94,9 +95,18 @@ const Cards: React.FC<CardsProps> = ({
                     vlueClassName || ""
                   }`}
                 >
-                  {item.description}
+                  {/\d+/.test(String(item.description)) ? (
+                    <CountUp
+                      number={parseInt(
+                        String(item.description).match(/\d+/)![0]
+                      )}
+                    />
+                  ) : (
+                    String(item.description)
+                  )}
                 </p>
               )}
+
               {item.value && (
                 <span
                   className={`text-[#519C66] text-[12px] font-normal font-[Inter] ${
