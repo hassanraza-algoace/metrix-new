@@ -109,7 +109,7 @@ const SideBar = () => {
   const selectedNavbarClass = `text-[0px] lg:flex lg:items-center lg:justify-start lg:gap-2 bg-[#5570F1] lg:text-[14px] lg:font-[Inter] p-2 lg:font-normal lg:px-4 lg:py-[17px] rounded-xl text-white lg:min-w-[180px] relative`;
 
   return (
-    <aside className="h-screen max-h-screen overflow-y-auto lg:px-4 lg:pb-4 flex flex-col justify-between  items-center lg:items-start sticky top-0">
+    <aside className="h-full max-h-screen overflow-y-auto lg:px-4 pb-2.5 lg:pb-4 flex flex-col justify-between  items-center lg:items-start sticky top-0">
       <div className="sticky top-0 bg-white w-full pt-4 z-10 flex justify-center lg:justify-start ">
         <img src="/images/Logo.png" alt="LOGO" className="hidden lg:block" />
         <img
