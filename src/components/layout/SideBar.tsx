@@ -118,7 +118,7 @@ const SideBar = () => {
           className="block lg:hidden w-[50%]"
         />
       </div>
-      <div className="mt-3 lg:mt-[50px] h-full flex flex-col justify-between">
+      <div className="mt-3 lg:mt-[50px] flex flex-col justify-between">
         <div>
           <ul className="flex items-center lg:items-start flex-col gap-3">
             {initialNavBarItems.map((item) => {
