@@ -39,3 +39,9 @@ input[type="time"] {
 div[data-radix-popper-content-wrapper] {
     background-color: whitesmoke;
 }
+/* .filter-card select {
+  -webkit-appearance: none;
+  -moz-appearance: none;    
+  appearance: none;         
+  background-image: none;
+} */

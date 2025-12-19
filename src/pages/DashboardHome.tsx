@@ -71,6 +71,7 @@ const DashboardHome = () => {
                       icons={LuFolderMinus}
                       iconClassName="bg-[#FFCC9129] text-white rounded-[8px] p-2"
                       downIconClassName="hidden"
+                      filterTextClassName="hidden"
                       className="p-4 rounded-lg min-h-[152px] justify-center w-full bg-[#5570F1]!"
                       divClassName={"w-[70%] nth-2:w-[30%]"}
                       titleClassName="text-white"

@@ -1,4 +1,4 @@
-import { FaAngleDown } from "react-icons/fa";
+// import { FaAngleDown } from "react-icons/fa";
 import { ChartPieDonut } from "./ChartPieDonut";
 
 const CardTwo = () => {
@@ -10,9 +10,11 @@ const CardTwo = () => {
         </h3>
         <div className="flex items-center gap-1">
           <p className="text-[#BEC0CA] font-[Inter] text-[12px] font-normal">
-            This Week
+            <select name="filter" id="filter">
+              <option value="this-week">This Week</option>
+            </select>
           </p>
-          <FaAngleDown className="text-[#BEC0CA] text-[8px]" />
+          {/* <FaAngleDown className="text-[#BEC0CA] text-[8px]" /> */}
         </div>
       </div>
       <div>

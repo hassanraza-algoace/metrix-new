@@ -1,5 +1,5 @@
 import type { IconType } from "react-icons";
-import { FaAngleDown } from "react-icons/fa";
+// import { FaAngleDown } from "react-icons/fa";
 import CountUp from "./CountUp";
 
 interface CardContentItem {
@@ -34,7 +34,7 @@ const Cards: React.FC<CardsProps> = ({
   content,
   iconClassName,
   divClassName,
-  downIconClassName,
+  // downIconClassName,
   titleClassName,
   vlueClassName,
   filterClassName,
@@ -65,17 +65,19 @@ const Cards: React.FC<CardsProps> = ({
             </p>
           </div>
         </div>
-        <div className={`flex items-center gap-1 ${filterClassName || ""}`}>
+        <div className={`filter-card flex items-center gap-1 p-1! ${filterClassName || ""}`}>
           <p
             className={`text-[#BEC0CA] font-[Inter] text-[12px] font-normal ${
               filterTextClassName || ""
             }`}
           >
-            {filterContent}
+            <select name="filter" id="filter" className={`p-0! m-0! `}>
+              <option value="">{filterContent}</option>
+            </select>
           </p>
-          <FaAngleDown
+          {/* <FaAngleDown
             className={`text-[#BEC0CA] text-[8px] ${downIconClassName || ""}`}
-          />
+          /> */}
         </div>
       </div>
       <div className="flex justify-between flex-wrap">
