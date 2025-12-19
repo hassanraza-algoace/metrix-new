@@ -76,7 +76,7 @@ const DashboardOrders = () => {
           content={cardData3}
         />
       </div>
-      <RecentOrder classes={"hidden"} />
+      <RecentOrder />
     </div>
   );
 };
